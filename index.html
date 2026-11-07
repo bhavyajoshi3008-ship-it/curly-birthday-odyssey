@@ -1,0 +1,4426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Happy Birthday, Curly! ✨ | Aarvi's Birthday Odyssey</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✨</text></svg>">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Dancing+Script:wght@600;700&family=Fredoka:wght@500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+  <!-- Canvas Confetti Library with local fallback -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+  <style>
+    /* ==========================================================================
+       GLOBAL CSS RESETS & THEME SYSTEM
+       ========================================================================== */
+    :root {
+      /* Shared typography */
+      --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-cursive: 'Dancing Script', cursive;
+      --font-hand: 'Caveat', cursive;
+      --font-retro: 'Fredoka', 'Impact', sans-serif;
+      --font-mono: 'Space Grotesk', monospace;
+      
+      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+      
+      /* Theme 1: Golden Hour Scrapbook (Default) */
+      --bg-gradient: radial-gradient(circle at 50% 10%, #FFFDF9 0%, #FFF7EC 50%, #FCEED8 100%);
+      --bg-card: rgba(255, 255, 255, 0.88);
+      --text-main: #3D2B1F;
+      --text-muted: #7A6253;
+      --accent-color: #D4AF37;
+      --accent-hover: #B8860B;
+      --nav-bg: rgba(255, 253, 247, 0.92);
+      --nav-border: #E8D5B5;
+      --nav-indicator: #D4AF37;
+      --dock-shadow: 0 12px 40px rgba(139, 90, 43, 0.14);
+    }
+
+    /* Page 2 Theme: Retro Pop-Art Diner & Street Stall */
+    body[data-page="2"] {
+      --bg-gradient: radial-gradient(circle at 50% 20%, #FFF8E7 0%, #FFE0B2 60%, #FF8A65 100%);
+      --bg-card: rgba(255, 255, 255, 0.95);
+      --text-main: #2D1810;
+      --text-muted: #6B4E3D;
+      --accent-color: #FF5722;
+      --accent-hover: #E64A19;
+      --nav-bg: rgba(255, 248, 231, 0.95);
+      --nav-border: #FFCC80;
+      --nav-indicator: #FF5722;
+      --dock-shadow: 0 12px 40px rgba(230, 74, 25, 0.2);
+    }
+
+    /* Page 3 Theme: Y2K Glossy Fashion Magazine & Glam Vault */
+    body[data-page="3"] {
+      --bg-gradient: linear-gradient(135deg, #18101E 0%, #2A1435 45%, #150A21 100%);
+      --bg-card: rgba(36, 18, 48, 0.75);
+      --text-main: #FFFFFF;
+      --text-muted: #D8B4E2;
+      --accent-color: #FF69B4;
+      --accent-hover: #FF1493;
+      --nav-bg: rgba(30, 15, 42, 0.88);
+      --nav-border: #FF69B4;
+      --nav-indicator: #FF69B4;
+      --dock-shadow: 0 12px 40px rgba(255, 105, 180, 0.28);
+    }
+
+    /* Page 4 Theme: Dark-Mode Pro Creator Suite */
+    body[data-page="4"] {
+      --bg-gradient: linear-gradient(180deg, #0F0F17 0%, #171724 60%, #0B0B12 100%);
+      --bg-card: rgba(24, 24, 38, 0.88);
+      --text-main: #F3F4F6;
+      --text-muted: #9CA3AF;
+      --accent-color: #8B5CF6;
+      --accent-hover: #A78BFA;
+      --nav-bg: rgba(20, 20, 32, 0.92);
+      --nav-border: #374151;
+      --nav-indicator: #8B5CF6;
+      --dock-shadow: 0 12px 40px rgba(139, 92, 246, 0.28);
+    }
+
+    /* Page 5 Theme: CurlyFlix Midnight Cinema */
+    body[data-page="5"] {
+      --bg-gradient: radial-gradient(circle at 50% 30%, #1C0F24 0%, #100816 70%, #08030B 100%);
+      --bg-card: rgba(28, 16, 36, 0.88);
+      --text-main: #FFF1F2;
+      --text-muted: #FDA4AF;
+      --accent-color: #E11D48;
+      --accent-hover: #BE123C;
+      --nav-bg: rgba(24, 12, 30, 0.92);
+      --nav-border: #F59E0B;
+      --nav-indicator: #E11D48;
+      --dock-shadow: 0 12px 40px rgba(225, 29, 72, 0.28);
+    }
+
+    /* Page 6 Theme: Twilight & Warm Vanilla Candlelight */
+    body[data-page="6"] {
+      --bg-gradient: radial-gradient(circle at 50% 50%, #15162C 0%, #090A17 60%, #05050D 100%);
+      --bg-card: rgba(22, 23, 46, 0.8);
+      --text-main: #FFF8E7;
+      --text-muted: #FDE68A;
+      --accent-color: #F59E0B;
+      --accent-hover: #D97706;
+      --nav-bg: rgba(18, 19, 40, 0.92);
+      --nav-border: #D97706;
+      --nav-indicator: #F59E0B;
+      --dock-shadow: 0 12px 40px rgba(245, 158, 11, 0.28);
+    }
+
+    /* Base styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-gradient);
+      color: var(--text-main);
+      min-height: 100vh;
+      overflow-x: hidden;
+      transition: background 0.7s var(--ease-smooth), color 0.5s ease;
+      position: relative;
+    }
+
+    /* Ambient noise & sparkles overlay */
+    .ambient-overlay {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.35;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+
+    /* App container */
+    #app-container {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      min-height: 100vh;
+      padding-bottom: 130px; /* Space for docks */
+    }
+
+    /* Page transition wrapper */
+    .page-section {
+      display: none;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.5s var(--ease-smooth), transform 0.5s var(--ease-smooth);
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px 20px 40px;
+    }
+
+    .page-section.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Universal Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 12px 24px;
+      border-radius: 9999px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.25s var(--ease-spring);
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn:active {
+      transform: translateY(1px) scale(0.98);
+    }
+
+    .btn-primary {
+      background: var(--accent-color);
+      color: #FFFFFF;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+    }
+
+    .btn-glass {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: var(--text-main);
+    }
+
+    .btn-glass:hover {
+      background: rgba(255, 255, 255, 0.35);
+    }
+
+    /* ==========================================================================
+       TOP BAR (Theme indicator & Fast Actions)
+       ========================================================================== */
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 18px 24px;
+      position: relative;
+      z-index: 50;
+    }
+
+    .brand-pill {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--bg-card);
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      backdrop-filter: blur(8px);
+    }
+
+    .brand-avatar-mini {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 2px solid var(--accent-color);
+      overflow: hidden;
+      background: #FFE8D6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .brand-avatar-mini img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .brand-title {
+      font-weight: 800;
+      font-size: 0.95rem;
+      letter-spacing: -0.02em;
+    }
+
+    .theme-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 4px 10px;
+      border-radius: 99px;
+      background: rgba(255, 255, 255, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    /* ==========================================================================
+       GLOBAL PERSISTENT MUSIC PLAYER DOCK ("Every Genre FM")
+       ========================================================================== */
+    .music-dock {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(18, 18, 26, 0.9);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      padding: 8px 16px 8px 10px;
+      border-radius: 999px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45), 0 0 20px rgba(212, 175, 55, 0.2);
+      transition: all 0.3s var(--ease-spring);
+      color: #FFFFFF;
+    }
+
+    .music-dock:hover {
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.55), 0 0 28px rgba(212, 175, 55, 0.35);
+      transform: translateY(-2px);
+    }
+
+    .vinyl-wrapper {
+      position: relative;
+      width: 46px;
+      height: 46px;
+      cursor: pointer;
+    }
+
+    .vinyl-disc {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: radial-gradient(circle, #2a2a2a 20%, #111111 25%, #222222 50%, #0a0a0a 75%, #181818 100%);
+      box-shadow: inset 0 0 0 2px #333, inset 0 0 0 6px #1a1a1a, 0 4px 12px rgba(0, 0, 0, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.5s ease;
+      animation: spinVinyl 6s linear infinite;
+      animation-play-state: paused;
+    }
+
+    .vinyl-disc.playing {
+      animation-play-state: running;
+    }
+
+    @keyframes spinVinyl {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .vinyl-center {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--accent-color);
+      border: 2px solid #000;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      color: #000;
+      font-weight: 800;
+    }
+
+    .vinyl-center img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .music-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 135px;
+      max-width: 180px;
+    }
+
+    .music-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      overflow: hidden;
+    }
+
+    .music-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: #FFFFFF;
+    }
+
+    .music-genre {
+      font-size: 0.68rem;
+      color: #A1A1AA;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Live audio visualizer bars */
+    .visualizer-bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 2px;
+      height: 14px;
+    }
+
+    .v-bar {
+      width: 3px;
+      background: var(--accent-color);
+      border-radius: 2px;
+      height: 3px;
+      transition: height 0.08s ease;
+    }
+
+    .music-controls {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .icon-btn {
+      background: none;
+      border: none;
+      color: #E4E4E7;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      transition: all 0.2s ease;
+    }
+
+    .icon-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: #FFFFFF;
+      transform: scale(1.1);
+    }
+
+    .icon-btn.play-btn {
+      background: var(--accent-color);
+      color: #FFFFFF;
+      width: 34px;
+      height: 34px;
+    }
+
+    .icon-btn.play-btn:hover {
+      background: var(--accent-hover);
+      transform: scale(1.12);
+    }
+
+    /* Dropdown station selector */
+    .genre-selector {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 99px;
+      color: #FFFFFF;
+      font-size: 0.72rem;
+      padding: 3px 8px;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .genre-selector option {
+      background: #181824;
+      color: #FFFFFF;
+    }
+
+    .upload-song-btn {
+      font-size: 0.68rem;
+      padding: 3px 8px;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px dashed rgba(255, 255, 255, 0.4);
+      border-radius: 99px;
+      color: #F4F4F5;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s;
+    }
+
+    .upload-song-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    /* Volume Slider */
+    .volume-control-wrap {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .volume-slider {
+      width: 50px;
+      height: 4px;
+      accent-color: var(--accent-color);
+      cursor: pointer;
+    }
+
+    /* ==========================================================================
+       GLOBAL FLOATING NAVIGATION DOCK
+       ========================================================================== */
+    .nav-dock-container {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 90;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--nav-bg);
+      border: 1px solid var(--nav-border);
+      padding: 7px 12px;
+      border-radius: 999px;
+      box-shadow: var(--dock-shadow);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      transition: all 0.5s var(--ease-smooth);
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.25s var(--ease-spring);
+      white-space: nowrap;
+    }
+
+    .nav-item:hover {
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-1px);
+    }
+
+    .nav-item.active {
+      background: var(--nav-indicator);
+      color: #FFFFFF;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+      transform: translateY(-2px);
+    }
+
+    .nav-item span.nav-icon {
+      font-size: 1.1rem;
+    }
+
+    .nav-next-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--accent-color);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.25s var(--ease-spring);
+      margin-left: 4px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-next-btn:hover {
+      background: var(--accent-hover);
+      transform: scale(1.05);
+    }
+
+    /* ==========================================================================
+       PAGE 1: THE COVER (Golden Hour Scrapbook)
+       ========================================================================== */
+    .scrapbook-hero {
+      text-align: center;
+      padding: 24px 10px 20px;
+      position: relative;
+    }
+
+    .gold-subtitle {
+      font-family: var(--font-cursive);
+      font-size: 2.2rem;
+      color: #C08A3E;
+      margin-bottom: 6px;
+      display: block;
+      transform: rotate(-2deg);
+    }
+
+    .main-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.6rem, 6vw, 4.8rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: #3D2B1F;
+      margin-bottom: 14px;
+      text-shadow: 0 2px 10px rgba(212, 175, 55, 0.15);
+    }
+
+    .curly-tagline {
+      font-size: 1.15rem;
+      color: #7A6253;
+      max-width: 650px;
+      margin: 0 auto 30px;
+      line-height: 1.6;
+    }
+
+    .envelope-interactive-wrap {
+      max-width: 480px;
+      margin: 0 auto 34px;
+      perspective: 1000px;
+    }
+
+    .envelope-box {
+      background: #FFFBF0;
+      border: 2px solid #E6D3B3;
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 16px 45px rgba(184, 134, 11, 0.15), inset 0 0 20px rgba(255, 255, 255, 0.8);
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.4s var(--ease-smooth);
+    }
+
+    .envelope-box:hover {
+      transform: translateY(-4px) scale(1.01);
+    }
+
+    .wax-seal {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #D4AF37 0%, #AA771C 100%);
+      box-shadow: 0 4px 16px rgba(170, 119, 28, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.4);
+      margin: 0 auto 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      font-weight: 900;
+      border: 2px solid #FDF0CD;
+      transition: transform 0.3s var(--ease-spring);
+    }
+
+    .envelope-box:hover .wax-seal {
+      transform: scale(1.1) rotate(6deg);
+    }
+
+    .envelope-card-content {
+      background: #FFFFFF;
+      border: 1px solid #F0E6D2;
+      border-radius: 14px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    /* Polaroid Frame */
+    .polaroid-card {
+      background: #FFFFFF;
+      padding: 16px 16px 24px;
+      border-radius: 4px;
+      box-shadow: 0 14px 35px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+      max-width: 340px;
+      margin: 0 auto 30px;
+      transform: rotate(2deg);
+      transition: transform 0.3s var(--ease-spring);
+      position: relative;
+      cursor: pointer;
+    }
+
+    .polaroid-card:hover {
+      transform: rotate(0deg) scale(1.03);
+    }
+
+    .washi-tape {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-3deg);
+      width: 110px;
+      height: 26px;
+      background: rgba(226, 149, 120, 0.65);
+      backdrop-filter: blur(4px);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+      clip-path: polygon(0% 0%, 100% 2%, 98% 98%, 2% 100%);
+    }
+
+    .polaroid-img-box {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: #FFF7EC;
+      border-radius: 3px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      border: 1px solid #EFE5D5;
+    }
+
+    .polaroid-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .polaroid-caption {
+      font-family: var(--font-hand);
+      font-size: 1.45rem;
+      color: #3D2B1F;
+      margin-top: 14px;
+      text-align: center;
+    }
+
+    /* Compliment generator */
+    .hype-box {
+      background: rgba(255, 255, 255, 0.85);
+      border: 2px dashed #D4AF37;
+      border-radius: 20px;
+      padding: 24px;
+      max-width: 620px;
+      margin: 0 auto 30px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1);
+    }
+
+    .hype-text {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #4A3525;
+      min-height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.3s ease;
+      line-height: 1.5;
+    }
+
+    .hype-stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 14px;
+      max-width: 750px;
+      margin: 20px auto 0;
+    }
+
+    .stat-card {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid #EEDBB9;
+      border-radius: 16px;
+      padding: 14px 10px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(184, 134, 11, 0.08);
+    }
+
+    .stat-val {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #C08A3E;
+      margin-bottom: 2px;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #8C6D58;
+    }
+
+    /* ==========================================================================
+       PAGE 2: CURLY'S CRAVINGS CAFÉ (Retro Diner & 100% Veg Stall)
+       ========================================================================== */
+    .diner-header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .checkerboard-strip {
+      height: 14px;
+      background: repeating-conic-gradient(#000000 0% 25%, #FFFFFF 0% 50%) 50% / 20px 20px;
+      border-radius: 4px;
+      margin: 12px 0 20px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .diner-neon-title {
+      font-family: var(--font-retro);
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      color: #FF5722;
+      text-shadow: 3px 3px 0 #2D1810, 0 0 20px rgba(255, 87, 34, 0.4);
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+    }
+
+    .diner-subtitle {
+      font-weight: 700;
+      color: #6B4E3D;
+      font-size: 1.1rem;
+      margin-top: 4px;
+    }
+
+    .diner-grid {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 24px;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .diner-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .snack-shelves {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 16px;
+    }
+
+    .snack-card {
+      background: #FFFFFF;
+      border: 3px solid #2D1810;
+      border-radius: 18px;
+      padding: 18px 14px;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: 5px 5px 0 #2D1810;
+      transition: all 0.2s var(--ease-spring);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .snack-card:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 #2D1810;
+    }
+
+    .snack-card:active {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0 #2D1810;
+    }
+
+    .snack-card.highlight {
+      border-color: #FF5722;
+      background: #FFFDF8;
+    }
+
+    .snack-badge {
+      position: absolute;
+      top: -10px;
+      right: -8px;
+      background: #FFD54F;
+      color: #2D1810;
+      font-size: 0.7rem;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 99px;
+      border: 2px solid #2D1810;
+      transform: rotate(4deg);
+      box-shadow: 2px 2px 0 #2D1810;
+    }
+
+    .snack-svg-box {
+      width: 90px;
+      height: 90px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .snack-title {
+      font-family: var(--font-retro);
+      font-size: 1.15rem;
+      color: #2D1810;
+      margin-bottom: 4px;
+    }
+
+    .snack-desc {
+      font-size: 0.78rem;
+      color: #6B4E3D;
+      line-height: 1.35;
+      margin-bottom: 12px;
+    }
+
+    .add-to-tray-btn {
+      margin-top: auto;
+      font-size: 0.8rem;
+      font-weight: 800;
+      padding: 6px 14px;
+      border-radius: 99px;
+      background: #FF5722;
+      color: #FFFFFF;
+      border: 2px solid #2D1810;
+      box-shadow: 2px 2px 0 #2D1810;
+      cursor: pointer;
+    }
+
+    /* Diner Tray & Receipt area */
+    .diner-tray-panel {
+      background: #FFFBF0;
+      border: 3px solid #2D1810;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 6px 6px 0 #2D1810;
+      position: sticky;
+      top: 24px;
+    }
+
+    .tray-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      border-bottom: 2px dashed #E0CDBA;
+      padding-bottom: 10px;
+    }
+
+    .tray-title {
+      font-family: var(--font-retro);
+      font-size: 1.3rem;
+      color: #2D1810;
+    }
+
+    .tray-surface {
+      min-height: 180px;
+      background: #E53935;
+      border: 4px solid #C62828;
+      border-radius: 14px;
+      padding: 14px;
+      box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-content: flex-start;
+      margin-bottom: 16px;
+    }
+
+    .tray-empty-hint {
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-align: center;
+      width: 100%;
+      margin: auto 0;
+    }
+
+    .tray-item-pill {
+      background: #FFFFFF;
+      border: 2px solid #2D1810;
+      border-radius: 99px;
+      padding: 5px 12px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #2D1810;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+      animation: popIn 0.3s var(--ease-spring);
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.6); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .tray-item-pill .remove-item {
+      cursor: pointer;
+      color: #E53935;
+      font-weight: 900;
+      margin-left: 2px;
+    }
+
+    /* Thermal receipt modal */
+    .receipt-container {
+      background: #FFFDF8;
+      border: 1px solid #E5E5E5;
+      padding: 24px 20px;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: #1F2937;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      position: relative;
+      margin-top: 14px;
+      border-radius: 4px;
+    }
+
+    .receipt-zigzag {
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 100%;
+      height: 8px;
+      background: repeating-linear-gradient(-45deg, #FFFDF8 0, #FFFDF8 6px, transparent 6px, transparent 12px);
+    }
+
+    .stamp-badge {
+      display: inline-block;
+      padding: 6px 14px;
+      border: 3px double #C62828;
+      color: #C62828;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      transform: rotate(-5deg);
+      border-radius: 6px;
+      margin: 12px 0 6px;
+      font-size: 0.85rem;
+    }
+
+    /* ==========================================================================
+       PAGE 3: THE GLAM VAULT & SNEAKER DROP (Y2K Fashion & Runway)
+       ========================================================================== */
+    .glam-hero {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .glam-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 5vw, 4.4rem);
+      font-weight: 900;
+      letter-spacing: 0.02em;
+      background: linear-gradient(135deg, #FFFFFF 0%, #FFB6C1 50%, #FF69B4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .glam-subtitle {
+      color: #D8B4E2;
+      font-size: 1.1rem;
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    .vault-section-title {
+      font-family: var(--font-serif);
+      font-size: 1.7rem;
+      color: #FFB6C1;
+      margin: 34px 0 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Earring mystery velvet boxes */
+    .earring-boxes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 18px;
+    }
+
+    .earring-box-card {
+      background: rgba(48, 25, 66, 0.7);
+      border: 1px solid rgba(255, 105, 180, 0.3);
+      border-radius: 20px;
+      padding: 22px 16px;
+      text-align: center;
+      cursor: pointer;
+      backdrop-filter: blur(12px);
+      transition: all 0.3s var(--ease-spring);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .earring-box-card:hover {
+      transform: translateY(-5px);
+      border-color: #FF69B4;
+      box-shadow: 0 12px 30px rgba(255, 105, 180, 0.3);
+    }
+
+    .earring-unboxed {
+      display: none;
+      animation: fadeInScale 0.4s var(--ease-spring);
+    }
+
+    .earring-unboxed.revealed {
+      display: block;
+    }
+
+    @keyframes fadeInScale {
+      0% { opacity: 0; transform: scale(0.8); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    .mystery-lid {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .velvet-box-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 14px;
+      background: radial-gradient(circle, #831843 0%, #500724 100%);
+      border: 2px solid #F472B6;
+      box-shadow: 0 6px 20px rgba(244, 114, 182, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+    }
+
+    .earring-svg-wrapper {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Lip Gloss Swatch Bar */
+    .lipgloss-bar-card {
+      background: rgba(36, 18, 48, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 22px;
+      padding: 24px;
+      margin-top: 24px;
+      backdrop-filter: blur(14px);
+    }
+
+    .swatch-tubes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .gloss-tube-btn {
+      flex: 1;
+      min-width: 140px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 16px;
+      padding: 12px 14px;
+      color: #FFFFFF;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s ease;
+    }
+
+    .gloss-tube-btn:hover {
+      background: rgba(255, 255, 255, 0.18);
+      transform: translateY(-2px);
+    }
+
+    .gloss-dot {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      box-shadow: 0 0 10px currentColor;
+    }
+
+    /* Sneaker Drop Shelf */
+    .sneaker-shelf-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 14px;
+    }
+
+    .sneaker-card {
+      background: rgba(30, 16, 42, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 22px;
+      padding: 20px;
+      transition: all 0.3s var(--ease-spring);
+      position: relative;
+    }
+
+    .sneaker-card:hover {
+      border-color: #FF69B4;
+      transform: translateY(-4px);
+      box-shadow: 0 12px 35px rgba(255, 105, 180, 0.2);
+    }
+
+    .sneaker-art {
+      width: 100%;
+      height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+
+    .sneaker-tag {
+      font-size: 0.7rem;
+      font-weight: 800;
+      color: #FF69B4;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .sneaker-name {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      color: #FFFFFF;
+      margin: 4px 0 8px;
+    }
+
+    .sneaker-specs {
+      font-size: 0.78rem;
+      color: #D8B4E2;
+      line-height: 1.5;
+    }
+
+    /* ==========================================================================
+       PAGE 4: "CURLY'S EDIT STUDIO" (Interactive Photo, Audio & Aesthetic Editor)
+       ========================================================================== */
+    .studio-container {
+      background: #141420;
+      border: 1px solid #28283C;
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    .studio-top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #28283C;
+      padding-bottom: 18px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .studio-title {
+      font-family: var(--font-mono);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #F3F4F6;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .studio-layout {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 24px;
+    }
+
+    @media (max-width: 950px) {
+      .studio-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Canvas workspace */
+    .canvas-stage-wrapper {
+      background: #0B0B12;
+      border: 1px solid #232334;
+      border-radius: 18px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      min-height: 480px;
+      overflow: hidden;
+    }
+
+    #edit-canvas {
+      max-width: 100%;
+      max-height: 540px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+      border-radius: 12px;
+      background: #181824;
+    }
+
+    .studio-timeline-bar {
+      margin-top: 18px;
+      width: 100%;
+      background: #181828;
+      border: 1px solid #2D2D42;
+      border-radius: 12px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .waveform-canvas {
+      flex: 1;
+      height: 32px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 6px;
+    }
+
+    /* Studio Controls Panel */
+    .studio-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .control-group-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #8B5CF6;
+      margin-bottom: 8px;
+    }
+
+    .preset-pills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+
+    .preset-pill {
+      background: #1C1C2B;
+      border: 1px solid #32324A;
+      color: #E2E8F0;
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-align: center;
+    }
+
+    .preset-pill:hover, .preset-pill.active {
+      background: #8B5CF6;
+      border-color: #A78BFA;
+      color: #FFFFFF;
+    }
+
+    .template-selector-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+
+    .template-card-btn {
+      background: #1C1C2B;
+      border: 1px solid #32324A;
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+      cursor: pointer;
+      color: #E2E8F0;
+      font-size: 0.8rem;
+      font-weight: 700;
+      transition: all 0.2s ease;
+    }
+
+    .template-card-btn.active, .template-card-btn:hover {
+      background: #25253A;
+      border-color: #06B6D4;
+      color: #06B6D4;
+    }
+
+    .sticker-chips-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .sticker-chip {
+      background: #1C1C2B;
+      border: 1px solid #32324A;
+      color: #E2E8F0;
+      padding: 6px 10px;
+      border-radius: 99px;
+      font-size: 0.78rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .sticker-chip.active {
+      background: #EC4899;
+      border-color: #F472B6;
+      color: #FFFFFF;
+    }
+
+    /* Slider styling */
+    .slider-row {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 0.78rem;
+      color: #9CA3AF;
+    }
+
+    .studio-range {
+      accent-color: #8B5CF6;
+      width: 100%;
+    }
+
+    /* ==========================================================================
+       PAGE 5: CURLYFLIX ROM-COM CINEMA (Midnight Cinema & Letterboxd)
+       ========================================================================== */
+    .cinema-header {
+      text-align: center;
+      margin-bottom: 30px;
+      position: relative;
+    }
+
+    .cinema-marquee {
+      display: inline-block;
+      border: 2px dashed #F59E0B;
+      padding: 6px 20px;
+      border-radius: 99px;
+      color: #F59E0B;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+
+    .cinema-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 5vw, 4.2rem);
+      font-weight: 900;
+      color: #FFF1F2;
+      text-shadow: 0 4px 20px rgba(225, 29, 72, 0.4);
+    }
+
+    .cinema-posters-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .poster-3d-wrap {
+      perspective: 1200px;
+      height: 440px;
+      cursor: pointer;
+    }
+
+    .poster-inner {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.7s var(--ease-spring);
+      border-radius: 20px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+    }
+
+    .poster-3d-wrap:hover .poster-inner {
+      transform: translateY(-6px);
+    }
+
+    .poster-3d-wrap.flipped .poster-inner {
+      transform: rotateY(180deg);
+    }
+
+    .poster-front, .poster-back {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .poster-front {
+      background: #1C0F24;
+      border: 2px solid rgba(225, 29, 72, 0.4);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .poster-img-area {
+      flex: 1;
+      width: 100%;
+      position: relative;
+      background: #2D1438;
+      overflow: hidden;
+    }
+
+    .poster-img-area img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .poster-3d-wrap:hover .poster-img-area img {
+      transform: scale(1.05);
+    }
+
+    .poster-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(28, 15, 36, 0.95) 90%);
+    }
+
+    .poster-meta {
+      padding: 16px 18px;
+      background: #1C0F24;
+      position: relative;
+      z-index: 2;
+    }
+
+    .poster-tagline {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #E11D48;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .poster-movie-title {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      color: #FFFFFF;
+      margin: 4px 0;
+    }
+
+    .poster-billing {
+      font-size: 0.75rem;
+      color: #FDA4AF;
+    }
+
+    .poster-back {
+      background: #2A1435;
+      border: 2px solid #E11D48;
+      transform: rotateY(180deg);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #FFFFFF;
+    }
+
+    .rotten-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: #34D399;
+      background: rgba(52, 211, 153, 0.15);
+      padding: 4px 10px;
+      border-radius: 99px;
+      width: fit-content;
+    }
+
+    .synopsis-text {
+      font-size: 0.88rem;
+      color: #FBCFE8;
+      line-height: 1.6;
+      margin: 14px 0;
+    }
+
+    .starring-quote {
+      font-family: var(--font-hand);
+      font-size: 1.3rem;
+      color: #FDE047;
+      line-height: 1.3;
+    }
+
+    /* ==========================================================================
+       PAGE 6: THE VANILLA CANDLELIGHT FINALE (Starry Night, Cake & Letter)
+       ========================================================================== */
+    .candlelight-scene {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+    }
+
+    .cake-showcase {
+      margin: 30px auto 40px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .cake-svg-wrap {
+      width: 290px;
+      height: 290px;
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.3s var(--ease-spring);
+    }
+
+    .cake-svg-wrap:hover {
+      transform: scale(1.03);
+    }
+
+    .candle-flame {
+      transition: all 0.4s ease;
+      transform-origin: center bottom;
+      animation: flicker 1s ease-in-out infinite alternate;
+      cursor: pointer;
+    }
+
+    .candle-flame.blown-out {
+      opacity: 0;
+      transform: scale(0.2) translateY(-20px);
+      pointer-events: none;
+    }
+
+    @keyframes flicker {
+      0% { transform: scale(1) rotate(-1deg); }
+      50% { transform: scale(1.08, 0.95) rotate(2deg); }
+      100% { transform: scale(0.95, 1.05) rotate(-2deg); }
+    }
+
+    /* Smoke wisps after blowing out */
+    .smoke-puff {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.7);
+      filter: blur(4px);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .smoke-puff.active {
+      animation: riseSmoke 1.5s ease-out forwards;
+    }
+
+    @keyframes riseSmoke {
+      0% { opacity: 0.8; transform: translate(0, 0) scale(1); }
+      100% { opacity: 0; transform: translate(10px, -60px) scale(3); }
+    }
+
+    /* Wax Sealed Envelope */
+    .finale-letter-container {
+      display: none;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s var(--ease-spring);
+      margin-top: 30px;
+    }
+
+    .finale-letter-container.revealed {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .parchment-letter {
+      background: #FFFDF7;
+      border: 1px solid #E2D3B8;
+      border-radius: 20px;
+      padding: 40px 36px;
+      color: #3D2B1F;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), inset 0 0 40px rgba(245, 230, 200, 0.3);
+      position: relative;
+      text-align: left;
+      line-height: 1.8;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .letter-salutation {
+      font-family: var(--font-cursive);
+      font-size: 2.5rem;
+      color: #B8860B;
+      margin-bottom: 16px;
+    }
+
+    .letter-body {
+      font-size: 1.05rem;
+      color: #4A3B32;
+      margin-bottom: 24px;
+      white-space: pre-line;
+    }
+
+    .letter-signature {
+      font-family: var(--font-cursive);
+      font-size: 2.2rem;
+      color: #B8860B;
+      text-align: right;
+    }
+
+    /* Modal dialogs */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+      z-index: 200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-card {
+      background: #FFFFFF;
+      border-radius: 24px;
+      max-width: 520px;
+      width: 100%;
+      padding: 28px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+      animation: modalPop 0.3s var(--ease-spring);
+      color: #1F2937;
+      position: relative;
+    }
+
+    @keyframes modalPop {
+      0% { transform: scale(0.85); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      background: #F3F4F6;
+      border: none;
+      border-radius: 50%;
+      width: 34px;
+      height: 34px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #6B7280;
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 640px) {
+      .top-bar {
+        padding: 12px 16px;
+      }
+      .brand-title {
+        font-size: 0.85rem;
+      }
+      .nav-dock-container {
+        padding: 6px 10px;
+        gap: 4px;
+        bottom: 14px;
+        max-width: 95vw;
+        overflow-x: auto;
+      }
+      .nav-item {
+        padding: 6px 10px;
+        font-size: 0.75rem;
+      }
+      .nav-item span.nav-text {
+        display: none; /* Icon-only on very small phones */
+      }
+      .music-dock {
+        bottom: 74px; /* Position above bottom nav */
+        right: 12px;
+        padding: 6px 10px;
+        gap: 8px;
+      }
+      .music-info {
+        min-width: 85px;
+        max-width: 110px;
+      }
+      .volume-control-wrap {
+        display: none; /* Hide volume slider on tight mobile screens */
+      }
+      .parchment-letter {
+        padding: 24px 18px;
+      }
+    }
+  </style>
+</head>
+<body data-page="1">
+  <div class="ambient-overlay"></div>
+
+  <!-- TOP BAR -->
+  <header class="top-bar">
+    <div class="brand-pill">
+      <div class="brand-avatar-mini" id="top-avatar-box">
+        <span id="top-avatar-emoji">👑</span>
+      </div>
+      <div>
+        <div class="brand-title" id="top-brand-title">Aarvi's Birthday Odyssey</div>
+      </div>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <span class="theme-badge" id="theme-indicator">Golden Hour ✨</span>
+      <label class="btn btn-glass" style="padding: 6px 14px; font-size: 0.8rem; cursor: pointer;">
+        📸 Upload Photo
+        <input type="file" id="global-photo-upload" accept="image/*" style="display: none;">
+      </label>
+    </div>
+  </header>
+
+  <!-- APP CONTENT (6 PAGES) -->
+  <main id="app-container">
+
+    <!-- =====================================================================
+         PAGE 1: THE COVER ("Happy Birthday, Curly! ✨")
+         ===================================================================== -->
+    <section class="page-section active" id="page-1">
+      <div class="scrapbook-hero">
+        <span class="gold-subtitle">For my favorite person in the whole world</span>
+        <h1 class="main-title" id="cover-main-heading">Happy Birthday, Curly! ✨</h1>
+        <p class="curly-tagline">
+          To the girl with the most <strong>iconic curly hair</strong>, the <strong>cutest sparkling eyes</strong>, 
+          the <strong>brightest infectious smile</strong>, and an unmatched taste in music, fashion, and aesthetic edits. 
+          Step into your 6 custom worlds crafted just for you!
+        </p>
+
+        <!-- Interactive Envelope -->
+        <div class="envelope-interactive-wrap" id="cover-envelope-btn" title="Click to open your birthday card & play music!">
+          <div class="envelope-box">
+            <div class="wax-seal">A</div>
+            <div class="envelope-card-content">
+              <h3 style="font-family: var(--font-serif); font-size: 1.3rem; margin-bottom: 6px; color: #3D2B1F;">
+                💌 A Sealed Card for Aarvi
+              </h3>
+              <p style="font-size: 0.85rem; color: #7A6253;">
+                Click to unlock your birthday music and open the gift!
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Polaroid Photo Frame (Click to upload photo) -->
+        <div class="polaroid-card" id="polaroid-cover-trigger" title="Click to drop a selfie or portrait of Curly!">
+          <div class="washi-tape"></div>
+          <div class="polaroid-img-box" id="cover-polaroid-display">
+            <!-- Default Avatar SVG -->
+            <svg id="default-curly-avatar" viewBox="0 0 200 200" width="100%" height="100%" style="display: block;">
+              <defs>
+                <linearGradient id="hairGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#3E2723"/>
+                  <stop offset="50%" stop-color="#5D4037"/>
+                  <stop offset="100%" stop-color="#2D1600"/>
+                </linearGradient>
+                <radialGradient id="skinGrad" cx="50%" cy="40%" r="50%">
+                  <stop offset="0%" stop-color="#FFE0B2"/>
+                  <stop offset="100%" stop-color="#F5CBA7"/>
+                </radialGradient>
+              </defs>
+              <!-- Voluminous Curls Background -->
+              <g fill="url(#hairGrad)">
+                <circle cx="50" cy="80" r="32"/>
+                <circle cx="40" cy="115" r="28"/>
+                <circle cx="150" cy="80" r="32"/>
+                <circle cx="160" cy="115" r="28"/>
+                <circle cx="70" cy="48" r="30"/>
+                <circle cx="100" cy="40" r="32"/>
+                <circle cx="130" cy="48" r="30"/>
+                <!-- Ringlet details -->
+                <circle cx="34" cy="95" r="18"/>
+                <circle cx="166" cy="95" r="18"/>
+                <circle cx="45" cy="140" r="20"/>
+                <circle cx="155" cy="140" r="20"/>
+              </g>
+              <!-- Neck & Top -->
+              <rect x="88" y="135" width="24" height="30" fill="#F5CBA7" rx="6"/>
+              <path d="M60 165 Q100 150 140 165 L150 200 L50 200 Z" fill="#D4AF37"/>
+              <!-- Face -->
+              <ellipse cx="100" cy="105" rx="42" ry="48" fill="url(#skinGrad)"/>
+              <!-- Cheeks Blush -->
+              <circle cx="76" cy="118" r="9" fill="#FF8A80" opacity="0.45"/>
+              <circle cx="124" cy="118" r="9" fill="#FF8A80" opacity="0.45"/>
+              <!-- Cute Eyes -->
+              <ellipse cx="80" cy="102" rx="6" ry="7" fill="#2E1C0C"/>
+              <circle cx="82" cy="100" r="2.5" fill="#FFFFFF"/>
+              <ellipse cx="120" cy="102" rx="6" ry="7" fill="#2E1C0C"/>
+              <circle cx="122" cy="100" r="2.5" fill="#FFFFFF"/>
+              <!-- Eyebrows -->
+              <path d="M72 92 Q80 89 88 92" stroke="#2E1C0C" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+              <path d="M112 92 Q120 89 128 92" stroke="#2E1C0C" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+              <!-- Bright Smile -->
+              <path d="M84 124 Q100 138 116 124" stroke="#D32F2F" stroke-width="3.5" fill="#FFFFFF" stroke-linecap="round"/>
+              <!-- Cute Front Curl Bangs -->
+              <g fill="url(#hairGrad)">
+                <circle cx="68" cy="68" r="16"/>
+                <circle cx="86" cy="62" r="15"/>
+                <circle cx="114" cy="62" r="15"/>
+                <circle cx="132" cy="68" r="16"/>
+              </g>
+              <!-- Sparkling Earring -->
+              <circle cx="58" cy="120" r="4" fill="#FFD700"/>
+              <circle cx="58" cy="128" r="3" fill="#FFFFFF"/>
+              <circle cx="142" cy="120" r="4" fill="#FFD700"/>
+              <circle cx="142" cy="128" r="3" fill="#FFFFFF"/>
+            </svg>
+            <img id="polaroid-img-elem" src="" alt="Aarvi" style="display: none;">
+            <div id="polaroid-overlay-prompt" style="position: absolute; bottom: 8px; font-size: 0.7rem; font-weight: 700; background: rgba(0,0,0,0.65); color: #FFF; padding: 4px 8px; border-radius: 99px;">
+              📷 Click to add photo
+            </div>
+          </div>
+          <div class="polaroid-caption" id="polaroid-caption-text">
+            Curly • Birthday Queen ✨
+          </div>
+        </div>
+
+        <!-- Hype Up Curly / Compliment Generator -->
+        <div class="hype-box">
+          <div style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #C08A3E; margin-bottom: 8px;">
+            The Curly Hype Station ✨
+          </div>
+          <div class="hype-text" id="hype-compliment-display">
+            "Your curls are certified iconic, your smile is sunshine, and your vibe is pure art!"
+          </div>
+          <button class="btn btn-primary" id="hype-next-btn" style="margin-top: 14px;">
+            ✨ Hype Up Curly Again
+          </button>
+        </div>
+
+        <!-- Fun Stats -->
+        <div class="hype-stat-grid">
+          <div class="stat-card">
+            <div class="stat-val">1000%</div>
+            <div class="stat-label">Curl Volume</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-val">Infinite</div>
+            <div class="stat-label">Eye Sparkle</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-val">100/10</div>
+            <div class="stat-label">Smile Radiance</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-val">Flawless</div>
+            <div class="stat-label">Music Taste</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         PAGE 2: CURLY'S CRAVINGS CAFÉ (Retro Diner & 100% Veg Feast)
+         ===================================================================== -->
+    <section class="page-section" id="page-2">
+      <div class="diner-header">
+        <div class="checkerboard-strip"></div>
+        <h2 class="diner-neon-title">Curly's Cravings Café</h2>
+        <p class="diner-subtitle">100% Veg • Elite Crunch • Undisputed GOAT Drinks • Pure Vibes</p>
+      </div>
+
+      <div class="diner-grid">
+        <!-- Snack Shelves -->
+        <div>
+          <h3 style="font-family: var(--font-retro); font-size: 1.4rem; color: #2D1810; margin-bottom: 14px;">
+            🛒 Click to Load Aarvi's Birthday Tray:
+          </h3>
+          <div class="snack-shelves" id="snack-shelves-container">
+            <!-- Dynamically populated via CONFIG.snacks with rich SVGs -->
+          </div>
+        </div>
+
+        <!-- Diner Tray & Receipt Area -->
+        <div class="diner-tray-panel">
+          <div class="tray-header">
+            <span class="tray-title">🍽️ Birthday Tray</span>
+            <span id="tray-count-badge" style="font-size: 0.8rem; font-weight: 800; background: #2D1810; color: #FFF; padding: 2px 8px; border-radius: 99px;">
+              0 items
+            </span>
+          </div>
+
+          <!-- Red Diner Tray Surface -->
+          <div class="tray-surface" id="diner-tray-surface">
+            <div class="tray-empty-hint" id="tray-empty-hint">
+              Tap any snack on the shelves to drop it onto your tray! 🍟🍦
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 8px;">
+            <button class="btn btn-primary" id="print-receipt-btn" style="flex: 1; font-size: 0.85rem; padding: 10px;">
+              🧾 Print Foodie Receipt
+            </button>
+            <button class="btn btn-glass" id="clear-tray-btn" style="padding: 10px 14px; font-size: 0.85rem;">
+              Clear
+            </button>
+          </div>
+
+          <!-- Receipt Output -->
+          <div id="receipt-output-area" style="display: none;">
+            <div class="receipt-container">
+              <div style="text-align: center; border-bottom: 1px dashed #9CA3AF; padding-bottom: 8px; margin-bottom: 10px;">
+                <div style="font-weight: 800; font-size: 1rem;">CURLY'S VEG CAFÉ & DÉLICES</div>
+                <div>Table #01 • Birthday VIP: Aarvi</div>
+                <div id="receipt-date-time">Nov 2026 • 100% Veg Approved</div>
+              </div>
+              <div id="receipt-items-list" style="margin-bottom: 10px; line-height: 1.5;"></div>
+              <div style="border-top: 1px dashed #9CA3AF; padding-top: 8px; display: flex; justify-content: space-between; font-weight: 800;">
+                <span>TOTAL CALORIES:</span>
+                <span>0 kcal (B-day rule!)</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 0.95rem; margin-top: 4px;">
+                <span>HAPPINESS LEVEL:</span>
+                <span>MAXIMUM 💖</span>
+              </div>
+              <div style="text-align: center; margin-top: 12px;">
+                <div class="stamp-badge">CERTIFIED VEG FOODIE QUEEN</div>
+                <div style="font-size: 0.7rem; color: #6B7280; margin-top: 6px;">Thank you for dining with Curly!</div>
+              </div>
+              <div class="receipt-zigzag"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         PAGE 3: THE GLAM VAULT & SNEAKER DROP (Y2K Fashion & Runway)
+         ===================================================================== -->
+    <section class="page-section" id="page-3">
+      <div class="glam-hero">
+        <h2 class="glam-title">The Glam Vault & Sneaker Drop</h2>
+        <p class="glam-subtitle">
+          "One can never have too many pairs of earrings or fresh kicks." — Aarvi's Golden Rule
+        </p>
+      </div>
+
+      <!-- Feature 1: The Earring Collector's Wall -->
+      <div>
+        <div class="vault-section-title">
+          <span>💎 The Earring Empire (5 Mystery Velvet Boxes)</span>
+          <span id="earrings-collected-count" style="font-size: 0.85rem; font-family: var(--font-body); background: rgba(255,105,180,0.25); border: 1px solid #FF69B4; padding: 2px 10px; border-radius: 99px;">
+            0 / 5 Unboxed
+          </span>
+        </div>
+        <p style="font-size: 0.88rem; color: #D8B4E2; margin-bottom: 16px;">
+          Click each luxury velvet jewelry case to reveal bespoke earring designs suited for Curly!
+        </p>
+
+        <div class="earring-boxes-grid" id="earring-boxes-container">
+          <!-- Populated dynamically via CONFIG.earrings with custom SVGs -->
+        </div>
+      </div>
+
+      <!-- Feature 2: Lip Gloss Swatch Bar -->
+      <div class="lipgloss-bar-card">
+        <h3 style="font-family: var(--font-serif); font-size: 1.4rem; color: #FFB6C1; margin-bottom: 4px;">
+          💄 The Lip Gloss Swatch Bar
+        </h3>
+        <p style="font-size: 0.85rem; color: #D8B4E2;">
+          Click a shade to test swatch it and bathe the boutique in glossy radiance!
+        </p>
+        <div class="swatch-tubes" id="swatch-tubes-container">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+
+      <!-- Feature 3: Limited Edition Sneaker Shelf -->
+      <div>
+        <div class="vault-section-title">
+          <span>👟 The Sneakerhead Shelf (Birthday Drops)</span>
+        </div>
+        <div class="sneaker-shelf-grid" id="sneaker-shelf-container">
+          <!-- Populated dynamically via CONFIG.sneakers -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         PAGE 4: "CURLY'S EDIT STUDIO" (Interactive Photo, Audio & Aesthetic Editor)
+         ===================================================================== -->
+    <section class="page-section" id="page-4">
+      <div class="studio-container">
+        <!-- Top Bar -->
+        <div class="studio-top-bar">
+          <div class="studio-title">
+            <span>🎬</span>
+            <span>Curly's Edit Studio Pro</span>
+            <span style="font-size: 0.7rem; background: #8B5CF6; color: #FFF; padding: 2px 8px; border-radius: 4px;">
+              v2026.11
+            </span>
+          </div>
+
+          <div style="display: flex; gap: 8px;">
+            <label class="btn btn-primary" style="padding: 8px 16px; font-size: 0.85rem; cursor: pointer;">
+              📁 Import Photo
+              <input type="file" id="studio-file-input" accept="image/*" style="display: none;">
+            </label>
+            <button class="btn btn-glass" id="studio-export-btn" style="padding: 8px 18px; font-size: 0.85rem; background: #06B6D4; color: #FFF;">
+              ✨ Export Aesthetic Edit (PNG)
+            </button>
+          </div>
+        </div>
+
+        <!-- Studio Layout -->
+        <div class="studio-layout">
+          <!-- Left: Canvas Workspace & Timeline -->
+          <div>
+            <div class="canvas-stage-wrapper">
+              <canvas id="edit-canvas" width="800" height="960"></canvas>
+            </div>
+
+            <!-- Waveform & Audio timeline -->
+            <div class="studio-timeline-bar">
+              <span style="font-size: 0.75rem; font-weight: 700; color: #8B5CF6; font-family: var(--font-mono);">
+                AUDIO TRACK [00:24]
+              </span>
+              <canvas class="waveform-canvas" id="timeline-waveform-canvas"></canvas>
+              <span style="font-size: 0.72rem; color: #9CA3AF; font-family: var(--font-mono);">
+                SYNCED TO FM
+              </span>
+            </div>
+          </div>
+
+          <!-- Right: Controls Sidebar -->
+          <div class="studio-panel">
+            <!-- 1. Aesthetic Filter Presets -->
+            <div>
+              <div class="control-group-title">Aesthetic Filter Presets</div>
+              <div class="preset-pills-grid" id="filter-presets-container">
+                <button class="preset-pill active" data-filter="none">Clean Natural</button>
+                <button class="preset-pill" data-filter="romcom">90s Rom-Com Grain</button>
+                <button class="preset-pill" data-filter="glow">Lip Gloss Glow</button>
+                <button class="preset-pill" data-filter="golden">Golden Curls</button>
+                <button class="preset-pill" data-filter="cyber">Y2K Cyber Pink</button>
+                <button class="preset-pill" data-filter="noir">Vintage B&W Chic</button>
+              </div>
+            </div>
+
+            <!-- 2. Frames & Templates -->
+            <div>
+              <div class="control-group-title">Cover Frame & Template</div>
+              <div class="template-selector-grid" id="template-selector-container">
+                <button class="template-card-btn active" data-template="vogue">
+                  📖 Vogue Magazine
+                </button>
+                <button class="template-card-btn" data-template="polaroid">
+                  📷 Polaroid Strip
+                </button>
+                <button class="template-card-btn" data-template="spotify">
+                  🎧 Spotify Player
+                </button>
+                <button class="template-card-btn" data-template="timeline">
+                  🎬 Creator Timeline
+                </button>
+              </div>
+            </div>
+
+            <!-- 3. Stamp Stickers -->
+            <div>
+              <div class="control-group-title">Toggle Stickers & Stamps</div>
+              <div class="sticker-chips-wrap" id="stickers-container">
+                <button class="sticker-chip" data-sticker="sparkles">✨ Sparkles</button>
+                <button class="sticker-chip" data-sticker="sunglasses">🕶️ Sunnies</button>
+                <button class="sticker-chip" data-sticker="tiara">👑 Queen Crown</button>
+                <button class="sticker-chip" data-sticker="lipgloss">💄 Lip Gloss</button>
+                <button class="sticker-chip" data-sticker="vanilla">🍦 Vanilla Cone</button>
+                <button class="sticker-chip" data-sticker="earring">💎 Diamond Earring</button>
+                <button class="sticker-chip" data-sticker="bow">🎀 Coquette Bow</button>
+                <button class="sticker-chip" data-sticker="baddie">⚡ Main Character</button>
+              </div>
+            </div>
+
+            <!-- 4. Photo Adjustments -->
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <div class="control-group-title">Photo Adjustments</div>
+              <div class="slider-row">
+                <span>Zoom / Scale</span>
+                <input type="range" class="studio-range" id="zoom-slider" min="0.6" max="2.0" step="0.05" value="1.0">
+              </div>
+              <div class="slider-row">
+                <span>Pan X</span>
+                <input type="range" class="studio-range" id="pan-x-slider" min="-200" max="200" step="5" value="0">
+              </div>
+              <div class="slider-row">
+                <span>Pan Y</span>
+                <input type="range" class="studio-range" id="pan-y-slider" min="-200" max="200" step="5" value="0">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         PAGE 5: CURLYFLIX ROM-COM CINEMA (Midnight Cinema & Letterboxd)
+         ===================================================================== -->
+    <section class="page-section" id="page-5">
+      <div class="cinema-header">
+        <div class="cinema-marquee">★ NOW STREAMING WORLDWIDE ★</div>
+        <h2 class="cinema-title">CurlyFlix Originals</h2>
+        <p style="color: #FDA4AF; font-size: 1.05rem; margin-top: 6px;">
+          Starring the one and only <strong>Aarvi (Curly)</strong>. Click any poster to flip for episode reviews!
+        </p>
+      </div>
+
+      <div class="cinema-posters-grid" id="cinema-posters-container">
+        <!-- Dynamically populated via CONFIG.movies -->
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         PAGE 6: THE VANILLA CANDLELIGHT FINALE (Cake, Candles & Letter)
+         ===================================================================== -->
+    <section class="page-section" id="page-6">
+      <div class="candlelight-scene">
+        <span style="font-family: var(--font-cursive); font-size: 2.2rem; color: #F59E0B; display: block; margin-bottom: 4px;">
+          The Grand Finale
+        </span>
+        <h2 style="font-family: var(--font-serif); font-size: clamp(2.4rem, 5vw, 4.2rem); color: #FFF8E7; font-weight: 900; margin-bottom: 8px;">
+          The Vanilla Candlelight Moment 🎂
+        </h2>
+        <p style="color: #FDE68A; font-size: 1.1rem; max-width: 600px; margin: 0 auto;">
+          Make your silent birthday wish in your heart... then click each candle or tap the button to blow them out!
+        </p>
+
+        <!-- Artisanal Vanilla Birthday Cake Showcase -->
+        <div class="cake-showcase">
+          <div class="cake-svg-wrap" id="cake-svg-btn" title="Click to blow out the candles!">
+            <svg viewBox="0 0 300 300" width="100%" height="100%">
+              <defs>
+                <!-- Vanilla Frosting Gradients -->
+                <linearGradient id="vanillaCream" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#FFFDF7"/>
+                  <stop offset="50%" stop-color="#FFF8E7"/>
+                  <stop offset="100%" stop-color="#F5E6CC"/>
+                </linearGradient>
+                <linearGradient id="goldPlate" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#F5D77F"/>
+                  <stop offset="100%" stop-color="#B8860B"/>
+                </linearGradient>
+                <radialGradient id="flameGlow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#FFE082"/>
+                  <stop offset="50%" stop-color="#FF9800"/>
+                  <stop offset="100%" stop-color="transparent"/>
+                </radialGradient>
+              </defs>
+
+              <!-- Cake Pedestal / Golden Plate -->
+              <ellipse cx="150" cy="270" rx="130" ry="18" fill="url(#goldPlate)"/>
+              <ellipse cx="150" cy="265" rx="122" ry="14" fill="#FFFDF7"/>
+
+              <!-- Tier 1 (Base Tier - Giant Vanilla Round) -->
+              <path d="M45 220 C45 200, 255 200, 255 220 L255 260 C255 280, 45 280, 45 260 Z" fill="url(#vanillaCream)"/>
+              <!-- Base Tier Frosting Drips -->
+              <path d="M45 220 Q65 240 85 220 Q105 240 125 220 Q145 240 165 220 Q185 240 205 220 Q225 240 255 220" stroke="#FFE0B2" stroke-width="4" fill="none"/>
+              <!-- Pearl Sprinkles on Base -->
+              <circle cx="70" cy="245" r="3" fill="#FF80AB"/>
+              <circle cx="110" cy="250" r="3.5" fill="#FFD54F"/>
+              <circle cx="150" cy="246" r="3" fill="#80D8FF"/>
+              <circle cx="190" cy="252" r="3.5" fill="#FF80AB"/>
+              <circle cx="230" cy="245" r="3" fill="#FFD54F"/>
+
+              <!-- Tier 2 (Middle Tier) -->
+              <path d="M75 160 C75 145, 225 145, 225 160 L225 205 C225 220, 75 220, 75 205 Z" fill="url(#vanillaCream)"/>
+              <!-- Middle Tier Drips & Rosettes -->
+              <path d="M75 160 Q100 178 125 160 Q150 178 175 160 Q200 178 225 160" stroke="#FFE0B2" stroke-width="3" fill="none"/>
+              <circle cx="95" cy="188" r="3" fill="#FFD54F"/>
+              <circle cx="135" cy="192" r="3" fill="#FF80AB"/>
+              <circle cx="170" cy="188" r="3.5" fill="#80D8FF"/>
+              <circle cx="205" cy="192" r="3" fill="#FFD54F"/>
+
+              <!-- Tier 3 (Top Tier) -->
+              <path d="M105 105 C105 92, 195 92, 195 105 L195 148 C195 160, 105 160, 105 148 Z" fill="url(#vanillaCream)"/>
+              <!-- Frosting Rosettes on top rim -->
+              <ellipse cx="150" cy="105" rx="45" ry="10" fill="#FFFDF9"/>
+
+              <!-- Candles & Flames -->
+              <!-- Candle 1 (Left) -->
+              <rect x="122" y="70" width="8" height="35" rx="3" fill="#FF80AB"/>
+              <path d="M124 70 L128 70 L128 105 L124 105 Z" fill="#FF4081"/>
+              <!-- Candle 2 (Center) -->
+              <rect x="146" y="58" width="8" height="47" rx="3" fill="#FFD54F"/>
+              <path d="M148 58 L152 58 L152 105 L148 105 Z" fill="#FFA000"/>
+              <!-- Candle 3 (Right) -->
+              <rect x="170" y="70" width="8" height="35" rx="3" fill="#80D8FF"/>
+              <path d="M172 70 L176 70 L176 105 L172 105 Z" fill="#00B0FF"/>
+
+              <!-- Wick lines -->
+              <line x1="126" y1="70" x2="126" y2="64" stroke="#222" stroke-width="2"/>
+              <line x1="150" y1="58" x2="150" y2="52" stroke="#222" stroke-width="2"/>
+              <line x1="174" y1="70" x2="174" y2="64" stroke="#222" stroke-width="2"/>
+
+              <!-- Candle Flames (Clickable individually) -->
+              <g id="candle-flames-group">
+                <!-- Flame 1 -->
+                <ellipse cx="126" cy="56" rx="6" ry="12" fill="url(#flameGlow)" class="candle-flame flame-1" id="flame-1"/>
+                <ellipse cx="126" cy="57" rx="3.5" ry="8" fill="#FFF59D" class="candle-flame flame-1"/>
+                <!-- Flame 2 (Center) -->
+                <ellipse cx="150" cy="44" rx="7" ry="14" fill="url(#flameGlow)" class="candle-flame flame-2" id="flame-2"/>
+                <ellipse cx="150" cy="45" rx="4" ry="9" fill="#FFF59D" class="candle-flame flame-2"/>
+                <!-- Flame 3 -->
+                <ellipse cx="174" cy="56" rx="6" ry="12" fill="url(#flameGlow)" class="candle-flame flame-3" id="flame-3"/>
+                <ellipse cx="174" cy="57" rx="3.5" ry="8" fill="#FFF59D" class="candle-flame flame-3"/>
+              </g>
+            </svg>
+
+            <!-- Smoke puff targets -->
+            <div class="smoke-puff" id="smoke-1" style="top: 45px; left: 120px;"></div>
+            <div class="smoke-puff" id="smoke-2" style="top: 30px; left: 145px;"></div>
+            <div class="smoke-puff" id="smoke-3" style="top: 45px; left: 170px;"></div>
+          </div>
+
+          <button class="btn btn-primary" id="blow-candles-btn" style="margin-top: 20px; font-size: 1.1rem; padding: 14px 32px; background: #F59E0B; color: #180D00;">
+            🎂 Make a Wish & Blow Out Candles!
+          </button>
+        </div>
+
+        <!-- The Birthday Letter (Reveals after blowing out candles) -->
+        <div class="finale-letter-container" id="finale-letter-wrap">
+          <div class="parchment-letter">
+            <div class="letter-salutation" id="letter-salutation-text">
+              Dearest Aarvi,
+            </div>
+            <div class="letter-body" id="letter-body-text">
+              <!-- Dynamically populated via CONFIG.letter -->
+            </div>
+            <div class="letter-signature" id="letter-signature-text">
+              With endless love & hype,<br>
+              Forever Your Friend ✨
+            </div>
+
+            <div style="margin-top: 30px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;">
+              <button class="btn btn-primary" id="hug-btn" style="background: #E11D48; color: #FFF;">
+                💖 Send Big Virtual Hug!
+              </button>
+              <button class="btn btn-glass" id="relight-candles-btn">
+                🕯️ Relight & Replay
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =====================================================================
+       GLOBAL PERSISTENT MUSIC PLAYER DOCK ("Every Genre FM")
+       ===================================================================== -->
+  <aside class="music-dock" id="music-dock">
+    <!-- Spinning Vinyl Disc -->
+    <div class="vinyl-wrapper" id="dock-vinyl-btn" title="Click to Play / Pause Music">
+      <div class="vinyl-disc" id="vinyl-disc-elem">
+        <div class="vinyl-center" id="vinyl-center-art">
+          <span id="vinyl-center-text">🎧</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Track & Genre Info -->
+    <div class="music-info">
+      <div class="music-title-wrap">
+        <div class="music-title" id="dock-track-title">Cozy Acoustic / Indie Pop</div>
+      </div>
+      <div class="music-genre">
+        <span id="dock-genre-label">Every Genre FM • Ch 1</span>
+        <!-- Real-time dynamic visualizer bars -->
+        <div class="visualizer-bars">
+          <div class="v-bar" id="v-bar-1"></div>
+          <div class="v-bar" id="v-bar-2"></div>
+          <div class="v-bar" id="v-bar-3"></div>
+          <div class="v-bar" id="v-bar-4"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Controls & Station Switcher -->
+    <div class="music-controls">
+      <select class="genre-selector" id="station-selector-dropdown" title="Select Genre Channel">
+        <option value="0">Ch 1: Cozy Indie Pop</option>
+        <option value="1">Ch 2: Retro Funk Lo-Fi</option>
+        <option value="2">Ch 3: Y2K Runway Beat</option>
+        <option value="3">Ch 4: Aesthetic Synthwave</option>
+        <option value="4">Ch 5: Birthday Music Box</option>
+      </select>
+
+      <button class="icon-btn play-btn" id="dock-play-pause-btn" title="Play / Pause">
+        <svg id="play-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <polygon points="5 3 19 12 5 21 5 3"></polygon>
+        </svg>
+        <svg id="pause-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display: none;">
+          <rect x="6" y="4" width="4" height="16"></rect>
+          <rect x="14" y="4" width="4" height="16"></rect>
+        </svg>
+      </button>
+
+      <button class="icon-btn" id="dock-next-track-btn" title="Next Genre Channel">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="5 4 15 12 5 20 5 4"></polygon>
+          <line x1="19" y1="5" x2="19" y2="19"></line>
+        </svg>
+      </button>
+
+      <!-- Volume Slider -->
+      <div class="volume-control-wrap" title="Adjust Volume">
+        <span style="font-size: 0.75rem;">🔊</span>
+        <input type="range" class="volume-slider" id="dock-volume-slider" min="0" max="1" step="0.05" value="0.7">
+      </div>
+
+      <label class="upload-song-btn" title="Play any custom audio file from your device!">
+        🎵 Your Song
+        <input type="file" id="custom-mp3-upload" accept="audio/*" style="display: none;">
+      </label>
+    </div>
+  </aside>
+
+  <!-- =====================================================================
+       GLOBAL FLOATING NAVIGATION DOCK
+       ===================================================================== -->
+  <nav class="nav-dock-container" id="global-nav-dock">
+    <button class="nav-item active" data-nav="1">
+      <span class="nav-icon">✨</span>
+      <span class="nav-text">Cover</span>
+    </button>
+    <button class="nav-item" data-nav="2">
+      <span class="nav-icon">🍦</span>
+      <span class="nav-text">Café</span>
+    </button>
+    <button class="nav-item" data-nav="3">
+      <span class="nav-icon">👟</span>
+      <span class="nav-text">Glam Vault</span>
+    </button>
+    <button class="nav-item" data-nav="4">
+      <span class="nav-icon">🎬</span>
+      <span class="nav-text">Edit Studio</span>
+    </button>
+    <button class="nav-item" data-nav="5">
+      <span class="nav-icon">🍿</span>
+      <span class="nav-text">CurlyFlix</span>
+    </button>
+    <button class="nav-item" data-nav="6">
+      <span class="nav-icon">🎂</span>
+      <span class="nav-text">Candlelight</span>
+    </button>
+    <button class="nav-next-btn" id="nav-next-world-btn">
+      Next World →
+    </button>
+  </nav>
+
+  <!-- =====================================================================
+       MODAL DIALOG (Movie Trailers, Receipt, Alerts)
+       ===================================================================== -->
+  <div class="modal-overlay" id="app-modal">
+    <div class="modal-card" id="modal-card-content">
+      <button class="modal-close-btn" id="modal-close-btn">✕</button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- Hidden Audio Element for Custom MP3 files -->
+  <audio id="custom-audio-player" preload="auto"></audio>
+
+  <!-- =====================================================================
+       APPLICATION SCRIPT
+       ===================================================================== -->
+  <script>
+    /* ==========================================================================
+       1. GLOBAL CONFIGURATION OBJECT
+       Easily edit any names, texts, compliments, items, or audio tracks here!
+       ========================================================================== */
+    const CONFIG = {
+      recipient: {
+        name: "Aarvi",
+        nickname: "Curly",
+        birthdayMonth: "November 2026",
+        salutation: "Dearest Aarvi (Curly) ✨",
+      },
+
+      // Custom local MP3 files (add filenames here if you drop .mp3 files into the directory)
+      musicTracks: [
+        // e.g. "./my-favorite-song.mp3"
+      ],
+      
+      // Page 1 Compliments
+      compliments: [
+        "Your curls are certified iconic, your smile is pure sunshine, and your aesthetic is unmatched! ✨",
+        "You have the cutest, most expressive eyes that light up any room in seconds! 🌟",
+        "Fashion magazine runway directors wish they could style curls as effortlessly as you do! 👗",
+        "Your taste in music spans literally every single genre and every single playlist is elite! 🎧",
+        "Nobody defends Vanilla ice cream with more passion, and honestly? You're completely right! 🍦",
+        "Your aesthetic edits are cinema quality. CapCut and Premiere Pro bow down to Curly! 🎬",
+        "The undisputed queen of the earring game. More pairs, more glam, forever! 💎",
+        "Papaya milkshake supremacy! Undisputed GOAT drink in history haha! 🥤",
+        "You bring warmth, laughter, and effortless main-character energy wherever you go! 💖"
+      ],
+
+      // Page 2 Snacks & Cravings
+      snacks: [
+        {
+          id: "veg-feast",
+          title: "Fav Khana",
+          subtitle: "Basically Everything (100% Veg hehe) 🥗🍕",
+          desc: "Paneer tikka, spicy chaat, cheesy pizza, crispy fries — 100% vegetarian goodness!",
+          badge: "UNLIMITED",
+          type: "feast",
+          highlight: true
+        },
+        {
+          id: "mad-angles",
+          title: "Mad Angles Achari Masti",
+          subtitle: "The Tangy Crunch Corner",
+          desc: "Perfect triangle crunch with that irresistible spicy mango pickle punch!",
+          badge: "ELITE CRUNCH",
+          type: "mad-angles",
+          highlight: false
+        },
+        {
+          id: "maxiella",
+          title: "Maxiella",
+          subtitle: "Crispy Wafer Luxury",
+          desc: "Layers of crunchy delicate wafers and rich chocolate goodness.",
+          badge: "STASH ITEM",
+          type: "maxiella",
+          highlight: false
+        },
+        {
+          id: "soya-sticks",
+          title: "Soya Sticks",
+          subtitle: "Masala Spiral Bliss",
+          desc: "Addictive spicy, tangy spiral crunch sticks. Impossible to eat just one!",
+          badge: "CHATPATA",
+          type: "soya-sticks",
+          highlight: false
+        },
+        {
+          id: "dairy-milk-oreo",
+          title: "Dairy Milk Oreo",
+          subtitle: "Royal Purple Wrapper",
+          desc: "Smooth silk chocolate wrapped around crunchy vanilla Oreo cream chunks.",
+          badge: "CHOCO STASH",
+          type: "dairy-milk",
+          highlight: false
+        },
+        {
+          id: "milkybar",
+          title: "Milkybar",
+          subtitle: "Creamy White Magic",
+          desc: "Classic sweet creamy vanilla white chocolate bar. Pure comfort!",
+          badge: "SWEET CLASSIC",
+          type: "milkybar",
+          highlight: false
+        },
+        {
+          id: "papaya-shake",
+          title: "Papaya Milkshake",
+          subtitle: "Undisputed GOAT Drink",
+          desc: "Tall frosted diner glass, chilled to perfection. Undisputed GOAT drink haha!",
+          badge: "SIGNATURE SIP",
+          type: "papaya-shake",
+          highlight: true
+        },
+        {
+          id: "vanilla-icecream",
+          title: "Vanilla Ice Cream",
+          subtitle: "The Colossal Scoop",
+          desc: "Vanillaaaaa > Chocolate (Don't argue lol). The absolute supreme flavor on earth!",
+          badge: "THE MAIN EVENT",
+          type: "vanilla-icecream",
+          highlight: true
+        }
+      ],
+
+      // Page 3 Earrings (The Earring Empire)
+      earrings: [
+        {
+          name: "Royal Kundan Jhumkas",
+          type: "Desi Regal Glam",
+          desc: "Ornate golden dome with delicate cascading seed pearls for that festive glow.",
+          note: "For when you bring unmatched ethnic royalty to the room!",
+          svgType: "jhumka"
+        },
+        {
+          name: "Y2K Chunky Chrome Hoops",
+          type: "Streetwear Statement",
+          desc: "Ultra-polished mirror silver chunky hoops that gleam under runway spotlights.",
+          note: "The signature everyday power hoop for Curly's curls!",
+          svgType: "hoop"
+        },
+        {
+          name: "Baroque Freshwater Pearl Drops",
+          type: "Old Money Chic",
+          desc: "Irregular organic lustrous pearls mounted on brushed 18k gold bezels.",
+          note: "Pure timeless elegance, just like your smile.",
+          svgType: "pearl"
+        },
+        {
+          name: "Cosmic Starburst Crystal Studs",
+          type: "Starlight Glitz",
+          desc: "Brilliant multi-point cubic zirconia stars with halo reflections.",
+          note: "Crafted specifically to match the sparkle in your eyes!",
+          svgType: "star"
+        },
+        {
+          name: "Chandelier Diamond Cascades",
+          type: "High Fashion Gala",
+          desc: "Five tiers of shimmering micro-pavé crystal links swaying with every head turn.",
+          note: "Because more earrings are NEVER enough!",
+          svgType: "cascade"
+        }
+      ],
+
+      // Page 3 Sneakers
+      sneakers: [
+        {
+          name: "The Air Curly 1s",
+          colorway: "Pastel Blossom / Gold Stitching",
+          specs: "Custom embroidered curly lace tips, Cloud-9 memory foam insole, 1-of-1 Birthday Edition.",
+          tag: "LIMITED EDITION",
+          palette: ["#FFF", "#F472B6", "#D4AF37"]
+        },
+        {
+          name: "Vanilla Cream Dunks",
+          colorway: "Ivory White / Warm Caramel",
+          specs: "Inspired by Aarvi's favorite ice cream flavor. Butter-soft leather with gum sole.",
+          tag: "ICONIC HEAT",
+          palette: ["#FFF8E7", "#D97706", "#2D1810"]
+        },
+        {
+          name: "Retro High '03 Pop",
+          colorway: "Chrome Lilac / Ice Translucent",
+          specs: "Y2K metallic sheen, reflective 3M overlays, built for dancing and runway struts.",
+          tag: "RUNWAY EXCLUSIVE",
+          palette: ["#E2E8F0", "#C084FC", "#38BDF8"]
+        }
+      ],
+
+      // Page 5 Rom-Com Cinema Series
+      movies: [
+        {
+          title: "Curly in Paris",
+          tagline: "High fashion, iconic curls, and croissant dreams",
+          synopsis: "When Aarvi arrives in Paris with a suitcase stuffed entirely with earrings and fresh sneakers, the fashion capital is turned upside down by her glorious curly hair and infectious laughter.",
+          quote: "\"Paris has the Eiffel Tower, but they don't have my curls!\"",
+          rating: "100%",
+          duration: "1h 48m • Rom-Com Series"
+        },
+        {
+          title: "To All The Earrings I've Loved Before",
+          tagline: "One girl. A thousand pairs of earrings. Zero regrets.",
+          synopsis: "A heartwarming documentary tracing Aarvi's legendary journey across jewelry shops, flea markets, and online boutiques. Spoiler: She needs another jewelry box immediately.",
+          quote: "\"I don't need a therapy session, I just need another pair of hoops.\"",
+          rating: "100%",
+          duration: "2h 05m • Style Comedy"
+        },
+        {
+          title: "Love at First Papaya Milkshake",
+          tagline: "A street-side diner romance that changed everything",
+          synopsis: "The controversial tale of how the world's most misunderstood fruit milkshake became Aarvi's undisputed GOAT beverage of all time. Critics call it 'A masterclass in taste'.",
+          quote: "\"If they don't serve Papaya Milkshake, we are leaving!\"",
+          rating: "100%",
+          duration: "1h 32m • Culinary Epic"
+        },
+        {
+          title: "Vanilla Over Everything",
+          tagline: "The controversial truth about the greatest flavor on earth",
+          synopsis: "In a world obsessed with triple dark chocolate, one brave girl stands her ground to declare Vanilla the supreme champion of all desserts. Prepare to be converted.",
+          quote: "\"Vanilla isn't boring, it's refined royalty!\"",
+          rating: "100%",
+          duration: "1h 55m • Delicious Drama"
+        }
+      ],
+
+      // Page 6 Letter
+      letter: {
+        body: `Happy, Happy Birthday Aarvi! 🎂✨
+
+From the moment you walk into any room, your presence brings this effortless warmth and joy that is impossible to miss. 
+
+First of all, let’s talk about that hair — your gorgeous, iconic curls are literally your crown! Combined with your sparkling, cutest eyes and that bright, infectious smile, you radiate pure main-character energy every single day.
+
+I love how unapologetically *you* you are. You love fashion with a passion, your earring collection could genuinely rival a high-end Parisian boutique (and yes, you definitely need more pairs!), and your sneaker game is always ten steps ahead. 
+
+I love that you listen to literally *every single genre of music*, turning everyday moments into cinematic soundtracks. I love that you make the prettiest, most aesthetic edits that look like they belong on a billboard. And of course, your legendary foodie convictions: 100% vegetarian, the fierce defense of Vanilla Ice Cream over Chocolate, and declaring Papaya Milkshake the undisputed GOAT drink in universe history!
+
+On this special birthday, I wish you a year bursting with immense happiness, laughter that makes your stomach hurt, new adventures, endless good music, pristine sneakers, zero bad hair days, and all the love in the universe.
+
+Thank you for being such an extraordinary friend. Keep shining, Curly! 💖`
+      },
+
+      // Audio Station Definitions (Procedural Synth Genres)
+      stations: [
+        { name: "Cozy Acoustic / Indie Pop", genre: "Ch 1: Indie Pop", tempo: 85, defaultPage: 1 },
+        { name: "Retro Funk / Lo-Fi Beats", genre: "Ch 2: Retro Funk", tempo: 96, defaultPage: 2 },
+        { name: "Y2K Pop / Runway Beat", genre: "Ch 3: Y2K Runway", tempo: 118, defaultPage: 3 },
+        { name: "Aesthetic Synthwave / Edit Audio", genre: "Ch 4: Synthwave", tempo: 105, defaultPage: 4 },
+        { name: "Dreamy Music Box / Birthday Waltz", genre: "Ch 5: Music Box", tempo: 78, defaultPage: 6 }
+      ]
+    };
+
+    /* ==========================================================================
+       2. PROCEDURAL WEB AUDIO SYNTHESIZER ENGINE ("Every Genre FM")
+       Completely self-contained, high-quality audio generator using Web Audio API!
+       ========================================================================== */
+    class AudioSynthesizerEngine {
+      constructor() {
+        this.ctx = null;
+        this.masterGain = null;
+        this.analyser = null;
+        this.isPlaying = false;
+        this.currentStation = 0;
+        this.step = 0;
+        this.timer = null;
+        this.customAudioMode = false;
+        this.customAudio = document.getElementById('custom-audio-player');
+        this.freqData = null;
+      }
+
+      initContext() {
+        if (!this.ctx) {
+          const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+          this.ctx = new AudioContextClass();
+          
+          this.masterGain = this.ctx.createGain();
+          const initialVol = parseFloat(document.getElementById('dock-volume-slider').value) || 0.7;
+          this.masterGain.gain.setValueAtTime(initialVol * 0.4, this.ctx.currentTime);
+          
+          this.analyser = this.ctx.createAnalyser();
+          this.analyser.fftSize = 64;
+          this.freqData = new Uint8Array(this.analyser.frequencyBinCount);
+          
+          this.masterGain.connect(this.analyser);
+          this.analyser.connect(this.ctx.destination);
+          
+          // Connect custom audio if loaded
+          try {
+            const source = this.ctx.createMediaElementSource(this.customAudio);
+            source.connect(this.masterGain);
+          } catch(e) {
+            // Already connected or not ready
+          }
+
+          // Start visualizer animation loop
+          this.startVisualizerLoop();
+        }
+        if (this.ctx.state === 'suspended') {
+          this.ctx.resume();
+        }
+      }
+
+      setVolume(val) {
+        if (this.masterGain && this.ctx) {
+          this.masterGain.gain.setValueAtTime(val * 0.5, this.ctx.currentTime);
+        }
+      }
+
+      startVisualizerLoop() {
+        const bars = [
+          document.getElementById('v-bar-1'),
+          document.getElementById('v-bar-2'),
+          document.getElementById('v-bar-3'),
+          document.getElementById('v-bar-4')
+        ];
+
+        const updateBars = () => {
+          if (this.analyser && this.isPlaying) {
+            this.analyser.getByteFrequencyData(this.freqData);
+            // Sample 4 bands: Sub, Low-Mid, High-Mid, High
+            const b1 = Math.max(3, (this.freqData[1] / 255) * 14);
+            const b2 = Math.max(3, (this.freqData[4] / 255) * 14);
+            const b3 = Math.max(3, (this.freqData[8] / 255) * 14);
+            const b4 = Math.max(3, (this.freqData[14] / 255) * 14);
+
+            if (bars[0]) bars[0].style.height = `${b1}px`;
+            if (bars[1]) bars[1].style.height = `${b2}px`;
+            if (bars[2]) bars[2].style.height = `${b3}px`;
+            if (bars[3]) bars[3].style.height = `${b4}px`;
+          } else {
+            bars.forEach(b => { if (b) b.style.height = '3px'; });
+          }
+          requestAnimationFrame(updateBars);
+        };
+        requestAnimationFrame(updateBars);
+      }
+
+      playPluckNote(freq, time, duration = 0.8, type = 'triangle') {
+        if (!this.ctx) return;
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        const filter = this.ctx.createBiquadFilter();
+
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, time);
+
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(freq * 3.5, time);
+        filter.frequency.exponentialRampToValueAtTime(Math.max(freq, 80), time + duration);
+
+        gain.gain.setValueAtTime(0.3, time);
+        gain.gain.exponentialRampToValueAtTime(0.0001, time + duration);
+
+        osc.connect(filter);
+        filter.connect(gain);
+        gain.connect(this.masterGain);
+
+        osc.start(time);
+        osc.stop(time + duration);
+      }
+
+      playRhodesChord(freqs, time, duration = 1.2) {
+        if (!this.ctx) return;
+        freqs.forEach(freq => {
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, time);
+
+          // Subtle tremolo
+          const lfo = this.ctx.createOscillator();
+          const lfoGain = this.ctx.createGain();
+          lfo.frequency.value = 4.5;
+          lfoGain.gain.value = 1.5;
+          lfo.connect(osc.frequency);
+          lfo.start(time);
+          lfo.stop(time + duration);
+
+          gain.gain.setValueAtTime(0.12, time);
+          gain.gain.exponentialRampToValueAtTime(0.0001, time + duration);
+
+          osc.connect(gain);
+          gain.connect(this.masterGain);
+
+          osc.start(time);
+          osc.stop(time + duration);
+        });
+      }
+
+      playSynthwavePad(freq, time, duration = 1.5) {
+        if (!this.ctx) return;
+        const osc1 = this.ctx.createOscillator();
+        const osc2 = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        const filter = this.ctx.createBiquadFilter();
+
+        osc1.type = 'sawtooth';
+        osc2.type = 'sawtooth';
+        osc1.frequency.setValueAtTime(freq, time);
+        osc2.frequency.setValueAtTime(freq * 1.008, time); // detune for fat 80s chorus
+
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(300, time);
+        filter.frequency.exponentialRampToValueAtTime(1400, time + duration * 0.4);
+        filter.frequency.exponentialRampToValueAtTime(400, time + duration);
+
+        gain.gain.setValueAtTime(0.001, time);
+        gain.gain.linearRampToValueAtTime(0.18, time + 0.1);
+        gain.gain.exponentialRampToValueAtTime(0.0001, time + duration);
+
+        osc1.connect(filter);
+        osc2.connect(filter);
+        filter.connect(gain);
+        gain.connect(this.masterGain);
+
+        osc1.start(time);
+        osc2.start(time);
+        osc1.stop(time + duration);
+        osc2.stop(time + duration);
+      }
+
+      playMusicBoxBell(freq, time, duration = 1.0) {
+        if (!this.ctx) return;
+        // Bell chime with harmonic overtone
+        [1, 2.02, 3.01].forEach((mult, idx) => {
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq * mult, time);
+
+          const vol = idx === 0 ? 0.25 : 0.08 / idx;
+          gain.gain.setValueAtTime(vol, time);
+          gain.gain.exponentialRampToValueAtTime(0.0001, time + duration);
+
+          osc.connect(gain);
+          gain.connect(this.masterGain);
+
+          osc.start(time);
+          osc.stop(time + duration);
+        });
+      }
+
+      tick() {
+        if (!this.isPlaying || this.customAudioMode) return;
+        const now = this.ctx.currentTime;
+        const s = this.step;
+
+        switch (this.currentStation) {
+          case 0: // Indie Acoustic / Cozy Pop
+            // G - Em7 - C - D progression
+            const acousticChords = [
+              [196, 246.9, 293.7, 392], // G
+              [164.8, 196, 246.9, 329.6], // Em
+              [130.8, 196, 246.9, 329.6], // C
+              [146.8, 220, 293.7, 370]   // D
+            ];
+            const chordIdx = Math.floor(s / 4) % acousticChords.length;
+            const noteIdx = s % 4;
+            const freq = acousticChords[chordIdx][noteIdx];
+            this.playPluckNote(freq, now, 0.6, 'triangle');
+            break;
+
+          case 1: // Retro Funk / Lo-Fi Beats
+            // Am7 - D9 - Gmaj7 - Cmaj7
+            const lofiBass = [110, 110, 146.8, 146.8, 98, 98, 130.8, 130.8];
+            const lofiChords = [
+              [220, 261.6, 329.6, 392],
+              [293.7, 370, 440, 523.3],
+              [196, 246.9, 293.7, 370],
+              [261.6, 329.6, 392, 493.9]
+            ];
+            if (s % 2 === 0) {
+              this.playPluckNote(lofiBass[Math.floor(s / 2) % lofiBass.length], now, 0.4, 'sine');
+            }
+            if (s % 4 === 0) {
+              this.playRhodesChord(lofiChords[Math.floor(s / 4) % lofiChords.length], now, 1.2);
+            }
+            break;
+
+          case 2: // Y2K Pop / Runway Beat
+            // F#m - D - A - E
+            const y2kArps = [
+              370, 440, 554.4, 740, 
+              293.7, 370, 440, 587.3,
+              440, 554.4, 659.3, 880,
+              329.6, 415.3, 493.9, 659.3
+            ];
+            const y2kNote = y2kArps[s % y2kArps.length];
+            this.playPluckNote(y2kNote, now, 0.28, 'sawtooth');
+            if (s % 4 === 0) {
+              // 808 Sub Kick
+              this.playPluckNote(55, now, 0.45, 'sine');
+            }
+            break;
+
+          case 3: // Aesthetic Synthwave
+            // Cm - Ab - Eb - Bb
+            const synthArp = [
+              261.6, 311.1, 392, 523.3,
+              207.7, 261.6, 311.1, 415.3,
+              311.1, 392, 466.2, 622.3,
+              233.1, 293.7, 349.2, 466.2
+            ];
+            const currentSynthNote = synthArp[s % synthArp.length];
+            this.playPluckNote(currentSynthNote, now, 0.22, 'square');
+            if (s % 8 === 0) {
+              this.playSynthwavePad(currentSynthNote / 2, now, 2.0);
+            }
+            break;
+
+          case 4: // Dreamy Music Box (Happy Birthday Melody + Waltz)
+            // Happy Birthday melody in C major
+            const bdayMelody = [
+              392, 392, 440, 392, 523.3, 493.9, 0, 0,
+              392, 392, 440, 392, 587.3, 523.3, 0, 0,
+              392, 392, 784, 659.3, 523.3, 493.9, 440, 0,
+              698.5, 698.5, 659.3, 523.3, 587.3, 523.3, 0, 0
+            ];
+            const bdayNote = bdayMelody[s % bdayMelody.length];
+            if (bdayNote > 0) {
+              this.playMusicBoxBell(bdayNote, now, 1.2);
+            }
+            break;
+        }
+
+        this.step++;
+      }
+
+      start() {
+        this.initContext();
+        if (this.customAudioMode) {
+          this.customAudio.play();
+          this.isPlaying = true;
+          this.updatePlayerUI();
+          return;
+        }
+
+        if (this.isPlaying) return;
+        this.isPlaying = true;
+
+        const currentStationDef = CONFIG.stations[this.currentStation];
+        const intervalMs = (60 / currentStationDef.tempo / 2) * 1000;
+
+        if (this.timer) clearInterval(this.timer);
+        this.timer = setInterval(() => this.tick(), intervalMs);
+        this.updatePlayerUI();
+      }
+
+      pause() {
+        this.isPlaying = false;
+        if (this.timer) {
+          clearInterval(this.timer);
+          this.timer = null;
+        }
+        if (this.customAudioMode) {
+          this.customAudio.pause();
+        }
+        this.updatePlayerUI();
+      }
+
+      togglePlay() {
+        if (this.isPlaying) {
+          this.pause();
+        } else {
+          this.start();
+        }
+      }
+
+      switchStation(index) {
+        this.customAudioMode = false;
+        this.customAudio.pause();
+        this.currentStation = index % CONFIG.stations.length;
+        this.step = 0;
+        
+        if (this.isPlaying) {
+          this.pause();
+          this.start();
+        } else {
+          this.updatePlayerUI();
+        }
+      }
+
+      nextStation() {
+        this.switchStation(this.currentStation + 1);
+      }
+
+      loadCustomAudio(file) {
+        this.initContext();
+        const url = URL.createObjectURL(file);
+        this.customAudio.src = url;
+        this.customAudioMode = true;
+        
+        // Update dock track display
+        const trackTitle = file.name.replace(/\.[^/.]+$/, "");
+        document.getElementById('dock-track-title').innerText = trackTitle;
+        document.getElementById('dock-genre-label').innerText = "Custom MP3 Vibe 🎵";
+
+        this.customAudio.play().then(() => {
+          this.isPlaying = true;
+          this.updatePlayerUI();
+        }).catch(err => {
+          console.log("Audio play error", err);
+        });
+      }
+
+      updatePlayerUI() {
+        const playIcon = document.getElementById('play-icon');
+        const pauseIcon = document.getElementById('pause-icon');
+        const vinylDisc = document.getElementById('vinyl-disc-elem');
+        const dropdown = document.getElementById('station-selector-dropdown');
+
+        if (this.isPlaying) {
+          playIcon.style.display = 'none';
+          pauseIcon.style.display = 'block';
+          vinylDisc.classList.add('playing');
+        } else {
+          playIcon.style.display = 'block';
+          pauseIcon.style.display = 'none';
+          vinylDisc.classList.remove('playing');
+        }
+
+        if (!this.customAudioMode) {
+          const st = CONFIG.stations[this.currentStation];
+          document.getElementById('dock-track-title').innerText = st.name;
+          document.getElementById('dock-genre-label').innerText = st.genre;
+          dropdown.value = this.currentStation;
+        }
+      }
+    }
+
+    const synthEngine = new AudioSynthesizerEngine();
+
+    /* ==========================================================================
+       3. PHOTO PERSISTENCE & SYNC SYSTEM
+       Syncs uploaded photos across Polaroid, Edit Studio, Movie Posters, Vinyl!
+       ========================================================================== */
+    let globalActivePhotoDataUrl = null;
+
+    function initPhotoSystem() {
+      // Check localStorage for previously saved photo
+      const savedPhoto = localStorage.getItem('curly_birthday_photo');
+      if (savedPhoto) {
+        applyPhotoToAllWorlds(savedPhoto);
+      }
+
+      // Listeners for file uploads
+      document.getElementById('global-photo-upload').addEventListener('change', handlePhotoFileSelect);
+      document.getElementById('polaroid-cover-trigger').addEventListener('click', () => {
+        document.getElementById('global-photo-upload').click();
+      });
+      document.getElementById('studio-file-input').addEventListener('change', handlePhotoFileSelect);
+    }
+
+    function handlePhotoFileSelect(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const dataUrl = event.target.result;
+        try {
+          localStorage.setItem('curly_birthday_photo', dataUrl);
+        } catch (err) {
+          console.warn("Could not save to localStorage (quota)", err);
+        }
+        applyPhotoToAllWorlds(dataUrl);
+        triggerConfetti(50);
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function applyPhotoToAllWorlds(dataUrl) {
+      globalActivePhotoDataUrl = dataUrl;
+
+      // 1. Top bar avatar
+      const topAvatarBox = document.getElementById('top-avatar-box');
+      topAvatarBox.innerHTML = `<img src="${dataUrl}" alt="Aarvi">`;
+
+      // 2. Cover Polaroid
+      const polaroidImg = document.getElementById('polaroid-img-elem');
+      const defaultSvg = document.getElementById('default-curly-avatar');
+      const promptText = document.getElementById('polaroid-overlay-prompt');
+      
+      polaroidImg.src = dataUrl;
+      polaroidImg.style.display = 'block';
+      defaultSvg.style.display = 'none';
+      promptText.innerText = "✨ Perfect! (Click to change)";
+
+      // 3. Mini Player Vinyl Center Art
+      const vinylCenterArt = document.getElementById('vinyl-center-art');
+      vinylCenterArt.innerHTML = `<img src="${dataUrl}" alt="Curly">`;
+
+      // 4. Update CurlyFlix Movie Posters
+      document.querySelectorAll('.poster-photo-slot').forEach(slot => {
+        slot.innerHTML = `<img src="${dataUrl}" alt="Aarvi">`;
+      });
+
+      // 5. Update Edit Studio Canvas
+      renderEditStudioCanvas();
+    }
+
+    /* ==========================================================================
+       4. PAGE NAVIGATION & DYNAMIC THEMES
+       ========================================================================== */
+    let currentPage = 1;
+    const themeNames = [
+      "Golden Hour ✨",
+      "Retro Diner 🍦",
+      "Glam & Kicks 👟",
+      "Edit Studio 🎬",
+      "CurlyFlix 🍿",
+      "Candlelight 🎂"
+    ];
+
+    function switchPage(pageNumber) {
+      if (pageNumber < 1 || pageNumber > 6) return;
+      currentPage = pageNumber;
+
+      // Update Body data-page attribute for CSS variables
+      document.body.setAttribute('data-page', pageNumber);
+
+      // Update page visibility
+      document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
+      const activeSec = document.getElementById(`page-${pageNumber}`);
+      if (activeSec) activeSec.classList.add('active');
+
+      // Update Floating Nav items
+      document.querySelectorAll('.nav-item').forEach(item => {
+        const itemPage = parseInt(item.getAttribute('data-nav'), 10);
+        if (itemPage === pageNumber) {
+          item.classList.add('active');
+        } else {
+          item.classList.remove('active');
+        }
+      });
+
+      // Update Theme indicator badge
+      document.getElementById('theme-indicator').innerText = themeNames[pageNumber - 1];
+
+      // Auto-suggest genre station for this world
+      const targetStation = Math.min(pageNumber - 1, 4);
+      if (!synthEngine.customAudioMode && synthEngine.currentStation !== targetStation) {
+        synthEngine.switchStation(targetStation);
+      }
+
+      // Smooth scroll to top of window
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // If switching to Edit Studio, redraw canvas
+      if (pageNumber === 4) {
+        setTimeout(renderEditStudioCanvas, 100);
+      }
+
+      // If switching to Finale and candles not blown out, ensure letter is hidden
+      if (pageNumber === 6 && !candlesBlownOut) {
+        document.getElementById('finale-letter-wrap').classList.remove('revealed');
+      }
+    }
+
+    function initNavigation() {
+      document.querySelectorAll('.nav-item').forEach(item => {
+        item.addEventListener('click', () => {
+          const page = parseInt(item.getAttribute('data-nav'), 10);
+          switchPage(page);
+        });
+      });
+
+      document.getElementById('nav-next-world-btn').addEventListener('click', () => {
+        const nextPage = currentPage >= 6 ? 1 : currentPage + 1;
+        switchPage(nextPage);
+      });
+    }
+
+    /* ==========================================================================
+       5. PAGE 1: THE COVER LOGIC
+       ========================================================================== */
+    function initPage1() {
+      let complimentIndex = 0;
+      const complimentDisplay = document.getElementById('hype-compliment-display');
+      const hypeBtn = document.getElementById('hype-next-btn');
+      const envelopeBtn = document.getElementById('cover-envelope-btn');
+
+      hypeBtn.addEventListener('click', () => {
+        complimentIndex = (complimentIndex + 1) % CONFIG.compliments.length;
+        complimentDisplay.style.opacity = '0';
+        setTimeout(() => {
+          complimentDisplay.innerText = `"${CONFIG.compliments[complimentIndex]}"`;
+          complimentDisplay.style.opacity = '1';
+        }, 200);
+        triggerConfetti(25);
+      });
+
+      envelopeBtn.addEventListener('click', () => {
+        envelopeBtn.style.transform = 'scale(1.05) translateY(-6px)';
+        triggerConfetti(60);
+        synthEngine.start();
+        setTimeout(() => {
+          envelopeBtn.style.transform = 'scale(1)';
+        }, 300);
+      });
+    }
+
+    /* ==========================================================================
+       6. PAGE 2: CRAVINGS CAFÉ INTERACTIVE MINI-GAME & SNACK SVGs
+       ========================================================================== */
+    let currentTrayItems = [];
+
+    // Custom bespoke SVGs for Aarvi's favorite food & snacks
+    function getSnackSVG(type) {
+      switch(type) {
+        case "mad-angles":
+          return `
+            <svg viewBox="0 0 100 100" width="100%" height="100%">
+              <defs>
+                <linearGradient id="madGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#43A047"/>
+                  <stop offset="60%" stop-color="#FDD835"/>
+                  <stop offset="100%" stop-color="#E65100"/>
+                </linearGradient>
+              </defs>
+              <!-- Triangular packet -->
+              <polygon points="50,10 90,85 10,85" fill="url(#madGrad)" stroke="#2E7D32" stroke-width="2.5"/>
+              <text x="50" y="52" font-family="'Fredoka', sans-serif" font-weight="900" font-size="10" fill="#FFF" text-anchor="middle">MAD</text>
+              <text x="50" y="63" font-family="'Fredoka', sans-serif" font-weight="900" font-size="9" fill="#FFEB3B" text-anchor="middle">ANGLES</text>
+              <text x="50" y="74" font-family="sans-serif" font-weight="800" font-size="6.5" fill="#D50000" text-anchor="middle">ACHARI MASTI</text>
+              <!-- Little crisp doodle -->
+              <polygon points="70,40 82,60 62,58" fill="#FFF59D" stroke="#F57F17" stroke-width="1"/>
+            </svg>
+          `;
+        case "maxiella":
+          return `
+            <svg viewBox="0 0 100 100" width="100%" height="100%">
+              <defs>
+                <linearGradient id="maxiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#3E2723"/>
+                  <stop offset="50%" stop-color="#5D4037"/>
+                  <stop offset="100%" stop-color="#D4AF37"/>
+                </linearGradient>
+              </defs>
+              <rect x="15" y="25" width="70" height="50" rx="8" fill="url(#maxiGrad)" stroke="#D4AF37" stroke-width="2"/>
+              <rect x="20" y="30" width="60" height="8" fill="#D4AF37" rx="2"/>
+              <text x="50" y="55" font-family="'Fredoka', sans-serif" font-weight="900" font-size="12" fill="#FFFFFF" text-anchor="middle">MAXIELLA</text>
+              <text x="50" y="66" font-family="sans-serif" font-weight="700" font-size="7" fill="#FFD54F" text-anchor="middle">CRISPY WAFER</text>
+            </svg>
+          `;
+        case "soya-sticks":
+          return `
+            <svg viewBox="0 0 100 100" width="100%" height="100%">
+              <rect x="22" y="16" width="56" height="68" rx="6" fill="#D32F2F" stroke="#B71C1C" stroke-width="2.5"/>
+              <path d="M22 36 Q50 46 78 36" stroke="#FFD54F" stroke-width="4" fill="none"/>
+              <text x="50" y="54" font-family="'Fredoka', sans-serif" font-weight="900" font-size="11" fill="#FFEB3B" text-anchor="middle">SOYA</text>
+              <text x="50" y="66" font-family="'Fredoka', sans-serif" font-weight="800" font-size="9" fill="#FFFFFF" text-anchor="middle">STICKS</text>
+              <!-- Spiral sticks -->
+              <line x1="32" y1="22" x2="38" y2="30" stroke="#FFCA28" stroke-width="3" stroke-linecap="round"/>
+              <line x1="62" y1="22" x2="68" y2="30" stroke="#FFCA28" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+          `;
+        case "dairy-milk":
+          return `
+            <svg viewBox="0 0 100 100" width="100%" height="100%">
+              <defs>
+                <linearGradient id="cadburyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#4A148C"/>
+                  <stop offset="60%" stop-color="#311B92"/>
+                  <stop offset="100%" stop-color="#1A237E"/>
+                </linearGradient>
+              </defs>
+              <rect x="20" y="18" width="60" height="64" rx="6" fill="url(#cadburyGrad)" stroke="#FFD700" stroke-width="1.5"/>
+              <circle cx="50" cy="40" r="14" fill="#0D47A1" stroke="#FFF" stroke-width="1.5"/>
+              <text x="50" y="44" font-family="'Fredoka', sans-serif" font-weight="900" font-size="8.5" fill="#FFF" text-anchor="middle">OREO</text>
+              <text x="50" y="64" font-family="'Playfair Display', serif" font-weight="800" font-size="8" fill="#FFD700" text-anchor="middle">Dairy Milk</text>
+              <text x="50" y="73" font-family="sans-serif" font-weight="700" font-size="6" fill="#E1BEE7" text-anchor="middle">SILK OREO</text>
+            </svg>
+          `;
+        case "milkybar":
+          return `
+            <svg viewBox="0 0 100 100" width="100%" height="100%">
+              <rect x="18" y="24" width="64" height="52" rx="6" fill="#FFFDE7" stroke="#FBC02D" stroke-width="2.5"/>
+              <rect x="18" y="32" width="64" height="18" fill="#FBC02D"/>
+              <text x="50" y="45" font-family="'Fredoka', sans-serif" font-weight="900" font-size="11" fill="#C62828" text-anchor="middle">Milkybar</text>
+              <text x="50" y="63" font-family="sans-serif" font-weight="800" font-size="7" fill="#3E2723" text-anchor="middle">WHITE CHOCOLATE</text>
+            </svg>
+          `;
+        case "papaya-shake":
+          return `
+            <svg viewBox="0 0 100 100" width="100%" height="100%">
+              <defs>
+                <linearGradient id="shakeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#FFAB91"/>
+                  <stop offset="50%" stop-color="#FF7043"/>
+                  <stop offset="100%" stop-color="#F4511E"/>
+                </linearGradient>
+              </defs>
+              <!-- Diner Glass -->
+              <polygon points="34,35 66,35 60,85 40,85" fill="url(#shakeGrad)" stroke="#B0BEC5" stroke-width="2"/>
+              <rect x="35" y="85" width="30" height="5" fill="#CFD8DC"/>
+              <!-- Whipped cream top -->
+              <ellipse cx="50" cy="35" rx="17" ry="9" fill="#FFF9C4"/>
+              <circle cx="50" cy="30" r="6" fill="#FFF9C4"/>
+              <!-- Straw -->
+              <line x1="52" y1="30" x2="65" y2="10" stroke="#E91E63" stroke-width="4" stroke-linecap="round"/>
+              <line x1="54" y1="28" x2="65" y2="10" stroke="#FFF" stroke-width="1.5" stroke-dasharray="3,3"/>
+              <!-- Papaya slice garnish -->
+              <path d="M30 35 A12 12 0 0 1 45 28 Z" fill="#FF8A65" stroke="#E64A19" stroke-width="1"/>
+            </svg>
+          `;
+        case "vanilla-icecream":
+          return `
+            <svg viewBox="0 0 100 100" width="100%" height="100%">
+              <!-- Waffle Cone/Cup -->
+              <polygon points="30,52 70,52 50,90" fill="#D7CCC8" stroke="#8D6E63" stroke-width="2"/>
+              <line x1="35" y1="58" x2="60" y2="82" stroke="#A1887F" stroke-width="1"/>
+              <line x1="65" y1="58" x2="40" y2="82" stroke="#A1887F" stroke-width="1"/>
+              <!-- Giant Vanilla Scoop -->
+              <circle cx="50" cy="42" r="22" fill="#FFFDF5" stroke="#FFE082" stroke-width="2"/>
+              <!-- Vanilla bean specks -->
+              <circle cx="44" cy="36" r="1" fill="#795548"/>
+              <circle cx="56" cy="40" r="1" fill="#795548"/>
+              <circle cx="48" cy="46" r="1" fill="#795548"/>
+              <circle cx="52" cy="34" r="1" fill="#795548"/>
+              <!-- Cherry on top -->
+              <circle cx="50" cy="22" r="6" fill="#D50000"/>
+              <path d="M50 20 Q55 12 60 14" stroke="#5D4037" stroke-width="1.5" fill="none"/>
+            </svg>
+          `;
+        case "feast":
+        default:
+          return `
+            <svg viewBox="0 0 100 100" width="100%" height="100%">
+              <circle cx="50" cy="50" r="40" fill="#FFF8E1" stroke="#FFB300" stroke-width="3"/>
+              <!-- Veg Pizza slice -->
+              <polygon points="50,50 30,22 65,20" fill="#FFB74D" stroke="#E65100" stroke-width="1.5"/>
+              <circle cx="42" cy="28" r="2.5" fill="#43A047"/>
+              <circle cx="50" cy="34" r="2" fill="#D84315"/>
+              <!-- Paneer Tikka skewer -->
+              <rect x="52" y="52" width="28" height="12" rx="3" fill="#FFE082" stroke="#FF8F00" stroke-width="1.5"/>
+              <circle cx="58" cy="58" r="2" fill="#2E7D32"/>
+              <circle cx="70" cy="58" r="2" fill="#C62828"/>
+              <!-- 100% Veg green mark -->
+              <rect x="22" y="60" width="18" height="18" fill="#FFF" stroke="#2E7D32" stroke-width="1.5"/>
+              <circle cx="31" cy="69" r="5" fill="#2E7D32"/>
+            </svg>
+          `;
+      }
+    }
+
+    function initPage2() {
+      const shelvesContainer = document.getElementById('snack-shelves-container');
+      shelvesContainer.innerHTML = '';
+
+      CONFIG.snacks.forEach(snack => {
+        const card = document.createElement('div');
+        card.className = `snack-card ${snack.highlight ? 'highlight' : ''}`;
+        card.innerHTML = `
+          <div class="snack-badge">${snack.badge}</div>
+          <div class="snack-svg-box">${getSnackSVG(snack.type)}</div>
+          <div class="snack-title">${snack.title}</div>
+          <div style="font-size: 0.75rem; font-weight: 700; color: #FF5722; margin-bottom: 4px;">${snack.subtitle}</div>
+          <div class="snack-desc">${snack.desc}</div>
+          <button class="add-to-tray-btn">+ Add to Tray</button>
+        `;
+
+        card.addEventListener('click', () => {
+          addItemToDinerTray(snack);
+        });
+
+        shelvesContainer.appendChild(card);
+      });
+
+      document.getElementById('clear-tray-btn').addEventListener('click', () => {
+        currentTrayItems = [];
+        updateDinerTrayUI();
+        document.getElementById('receipt-output-area').style.display = 'none';
+      });
+
+      document.getElementById('print-receipt-btn').addEventListener('click', printFoodieReceipt);
+    }
+
+    function addItemToDinerTray(snack) {
+      currentTrayItems.push(snack);
+      updateDinerTrayUI();
+
+      // Play cute synthesized pop
+      if (synthEngine.ctx) {
+        synthEngine.playPluckNote(440 + Math.random() * 200, synthEngine.ctx.currentTime, 0.2, 'triangle');
+      }
+
+      // Small confetti
+      triggerConfetti(15);
+    }
+
+    function removeItemFromDinerTray(index) {
+      currentTrayItems.splice(index, 1);
+      updateDinerTrayUI();
+    }
+
+    function updateDinerTrayUI() {
+      const traySurface = document.getElementById('diner-tray-surface');
+      const countBadge = document.getElementById('tray-count-badge');
+
+      countBadge.innerText = `${currentTrayItems.length} items`;
+
+      if (currentTrayItems.length === 0) {
+        traySurface.innerHTML = `
+          <div class="tray-empty-hint" id="tray-empty-hint">
+            Tap any snack on the shelves to drop it onto your tray! 🍟🍦
+          </div>
+        `;
+        return;
+      }
+
+      traySurface.innerHTML = '';
+      currentTrayItems.forEach((item, idx) => {
+        const pill = document.createElement('div');
+        pill.className = 'tray-item-pill';
+        pill.innerHTML = `
+          <span>✨</span>
+          <span>${item.title}</span>
+          <span class="remove-item" title="Remove item">✕</span>
+        `;
+        pill.querySelector('.remove-item').addEventListener('click', (e) => {
+          e.stopPropagation();
+          removeItemFromDinerTray(idx);
+        });
+        traySurface.appendChild(pill);
+      });
+    }
+
+    function printFoodieReceipt() {
+      if (currentTrayItems.length === 0) {
+        alert("Your tray is empty! Add Aarvi's favorite snacks before printing the receipt! 🍦🍟");
+        return;
+      }
+
+      const receiptArea = document.getElementById('receipt-output-area');
+      const itemsList = document.getElementById('receipt-items-list');
+      receiptArea.style.display = 'block';
+
+      itemsList.innerHTML = '';
+      currentTrayItems.forEach(item => {
+        const row = document.createElement('div');
+        row.style.display = 'flex';
+        row.style.justifyContent = 'space-between';
+        row.style.margin = '4px 0';
+        row.innerHTML = `
+          <span>${item.title}</span>
+          <span>FREE (VIP)</span>
+        `;
+        itemsList.appendChild(row);
+      });
+
+      triggerConfetti(70);
+    }
+
+    /* ==========================================================================
+       7. PAGE 3: THE GLAM VAULT & SNEAKER DROP LOGIC & BESPOKE EARRING SVGs
+       ========================================================================== */
+    let unboxedEarringsCount = 0;
+
+    function getEarringSVG(svgType) {
+      switch(svgType) {
+        case "jhumka":
+          return `
+            <svg viewBox="0 0 100 100" width="100%" height="100%">
+              <defs>
+                <linearGradient id="goldFiligree" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#FFE082"/>
+                  <stop offset="50%" stop-color="#FFB300"/>
+                  <stop offset="100%" stop-color="#FF8F00"/>
+                </linearGradient>
+              </defs>
+              <!-- Floral Stud -->
+              <circle cx="50" cy="20" r="9" fill="url(#goldFiligree)"/>
+              <circle cx="50" cy="20" r="4" fill="#D32F2F"/>
+              <!-- Connecting Link -->
+              <line x1="50" y1="29" x2="50" y2="38" stroke="#FFA000" stroke-width="2"/>
+              <!-- Jhumka Dome -->
+              <path d="M30 52 C30 36, 70 36, 70 52 Z" fill="url(#goldFiligree)" stroke="#FF8F00" stroke-width="1.5"/>
+              <ellipse cx="50" cy="52" rx="20" ry="4" fill="#FFD54F"/>
+              <!-- Dangling pearls -->
+              <circle cx="33" cy="62" r="3" fill="#FFF"/>
+              <circle cx="41" cy="64" r="3" fill="#FFF"/>
+              <circle cx="50" cy="66" r="3.5" fill="#FFF"/>
+              <circle cx="59" cy="64" r="3" fill="#FFF"/>
+              <circle cx="67" cy="62" r="3" fill="#FFF"/>
+            </svg>
+          `;
+        case "hoop":
+          return `
+            <svg viewBox="0 0 100 100" width="100%" height="100%">
+              <defs>
+                <linearGradient id="chromeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#FFFFFF"/>
+                  <stop offset="40%" stop-color="#B0BEC5"/>
+                  <stop offset="60%" stop-color="#ECEFF1"/>
+                  <stop offset="100%" stop-color="#78909C"/>
+                </linearGradient>
+              </defs>
+              <ellipse cx="50" cy="50" rx="30" ry="34" fill="none" stroke="url(#chromeGrad)" stroke-width="9"/>
+              <!-- Reflection gleam -->
+              <path d="M26 40 A30 34 0 0 1 50 16" fill="none" stroke="#FFF" stroke-width="3" stroke-linecap="round"/>
+              <polygon points="76,46 80,48 78,52 74,50" fill="#FFF"/>
+            </svg>
+          `;
+        case "pearl":
+          return `
+            <svg viewBox="0 0 100 100" width="100%" height="100%">
+              <defs>
+                <radialGradient id="pearlShimmer" cx="40%" cy="35%" r="60%">
+                  <stop offset="0%" stop-color="#FFFFFF"/>
+                  <stop offset="40%" stop-color="#FFF8E7"/>
+                  <stop offset="80%" stop-color="#E0E7FF"/>
+                  <stop offset="100%" stop-color="#C7D2FE"/>
+                </radialGradient>
+              </defs>
+              <!-- Gold stud -->
+              <circle cx="50" cy="20" r="7" fill="#FFD700" stroke="#B8860B" stroke-width="1.5"/>
+              <line x1="50" y1="27" x2="50" y2="38" stroke="#FFD700" stroke-width="2"/>
+              <!-- Baroque Teardrop Pearl -->
+              <path d="M50 38 C36 48, 32 72, 50 82 C68 72, 64 48, 50 38 Z" fill="url(#pearlShimmer)" stroke="#E0E7FF" stroke-width="1.5"/>
+              <!-- Luster Highlight -->
+              <ellipse cx="44" cy="52" rx="4" ry="9" fill="#FFFFFF" opacity="0.8" transform="rotate(-15 44 52)"/>
+            </svg>
+          `;
+        case "star":
+          return `
+            <svg viewBox="0 0 100 100" width="100%" height="100%">
+              <defs>
+                <linearGradient id="starShine" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#FFFFFF"/>
+                  <stop offset="50%" stop-color="#A5F3FC"/>
+                  <stop offset="100%" stop-color="#38BDF8"/>
+                </linearGradient>
+              </defs>
+              <!-- 8 Point Crystal Starburst -->
+              <polygon points="50,15 54,42 80,50 54,58 50,85 46,58 20,50 46,42" fill="url(#starShine)" stroke="#FFF" stroke-width="2"/>
+              <!-- Diagonal sparkles -->
+              <polygon points="50,30 52,48 70,50 52,52 50,70 48,52 30,50 48,48" fill="#FFF"/>
+              <circle cx="50" cy="50" r="5" fill="#FFFFFF"/>
+            </svg>
+          `;
+        case "cascade":
+        default:
+          return `
+            <svg viewBox="0 0 100 100" width="100%" height="100%">
+              <!-- Chandelier Diamond Cascade -->
+              <circle cx="50" cy="18" r="6" fill="#E0F2FE" stroke="#38BDF8" stroke-width="1.5"/>
+              <line x1="38" y1="30" x2="62" y2="30" stroke="#CBD5E1" stroke-width="2"/>
+              <!-- Tier 1 Drops -->
+              <polygon points="40,32 43,46 37,46" fill="#BAE6FD"/>
+              <polygon points="50,32 53,52 47,52" fill="#38BDF8"/>
+              <polygon points="60,32 63,46 57,46" fill="#BAE6FD"/>
+              <!-- Tier 2 Drops -->
+              <polygon points="45,56 48,72 42,72" fill="#E0F2FE"/>
+              <polygon points="55,56 58,72 52,72" fill="#E0F2FE"/>
+              <circle cx="50" cy="84" r="5" fill="#38BDF8"/>
+            </svg>
+          `;
+      }
+    }
+
+    function initPage3() {
+      // 1. Earring Boxes
+      const earringContainer = document.getElementById('earring-boxes-container');
+      earringContainer.innerHTML = '';
+      unboxedEarringsCount = 0;
+
+      CONFIG.earrings.forEach((earring, idx) => {
+        const box = document.createElement('div');
+        box.className = 'earring-box-card';
+        box.innerHTML = `
+          <div class="mystery-lid" id="box-lid-${idx}">
+            <div class="velvet-box-icon">🎁</div>
+            <div style="font-weight: 800; font-size: 0.95rem; color: #FFF;">Mystery Box #${idx + 1}</div>
+            <div style="font-size: 0.72rem; color: #FFB6C1;">Tap to Unbox</div>
+          </div>
+          <div class="earring-unboxed" id="box-revealed-${idx}">
+            <div class="earring-svg-wrapper">${getEarringSVG(earring.svgType)}</div>
+            <div style="font-family: var(--font-serif); font-size: 1.15rem; color: #FFF; font-weight: 700;">
+              ${earring.name}
+            </div>
+            <div style="font-size: 0.75rem; color: #FF69B4; font-weight: 800; margin: 4px 0;">
+              ${earring.type}
+            </div>
+            <div style="font-size: 0.78rem; color: #D8B4E2; line-height: 1.4; margin-bottom: 8px;">
+              ${earring.desc}
+            </div>
+            <div style="font-family: var(--font-hand); font-size: 1.05rem; color: #FDE047;">
+              "${earring.note}"
+            </div>
+          </div>
+        `;
+
+        box.addEventListener('click', () => {
+          const lid = document.getElementById(`box-lid-${idx}`);
+          const rev = document.getElementById(`box-revealed-${idx}`);
+
+          if (lid.style.display !== 'none') {
+            lid.style.display = 'none';
+            rev.classList.add('revealed');
+            unboxedEarringsCount++;
+            document.getElementById('earrings-collected-count').innerText = 
+              `${unboxedEarringsCount} / 5 Unboxed`;
+            triggerConfetti(30);
+
+            if (synthEngine.ctx) {
+              synthEngine.playMusicBoxBell(587.3 + idx * 80, synthEngine.ctx.currentTime, 0.8);
+            }
+          }
+        });
+
+        earringContainer.appendChild(box);
+      });
+
+      // 2. Lip Gloss Swatch Bar
+      const swatchTubes = [
+        { name: "Honey Glaze", color: "#FBBF24" },
+        { name: "Pink Sparkle", color: "#F472B6" },
+        { name: "Berry Gloss", color: "#BE185D" },
+        { name: "Vanilla Buttercream", color: "#FEF08A" },
+        { name: "Holo Chrome", color: "#67E8F9" }
+      ];
+
+      const swatchContainer = document.getElementById('swatch-tubes-container');
+      swatchContainer.innerHTML = '';
+      swatchTubes.forEach(tube => {
+        const btn = document.createElement('button');
+        btn.className = 'gloss-tube-btn';
+        btn.innerHTML = `
+          <div class="gloss-dot" style="background: ${tube.color}; color: ${tube.color};"></div>
+          <span style="font-weight: 700; font-size: 0.85rem;">${tube.name}</span>
+        `;
+        btn.addEventListener('click', () => {
+          document.body.style.boxShadow = `inset 0 0 100px ${tube.color}33`;
+          setTimeout(() => {
+            document.body.style.boxShadow = 'none';
+          }, 1200);
+          triggerConfetti(20);
+        });
+        swatchContainer.appendChild(btn);
+      });
+
+      // 3. Sneakers
+      const sneakerContainer = document.getElementById('sneaker-shelf-container');
+      sneakerContainer.innerHTML = '';
+      CONFIG.sneakers.forEach(snk => {
+        const card = document.createElement('div');
+        card.className = 'sneaker-card';
+        card.innerHTML = `
+          <div class="sneaker-art">
+            <svg viewBox="0 0 200 100" width="160" height="80">
+              <path d="M20 70 Q40 30 90 35 Q130 35 150 50 Q180 50 185 70 Q185 85 20 85 Z" fill="${snk.palette[0]}" stroke="${snk.palette[1]}" stroke-width="3"/>
+              <path d="M45 40 Q75 60 145 45" stroke="${snk.palette[2]}" stroke-width="5" fill="none" stroke-linecap="round"/>
+              <rect x="15" y="80" width="175" height="12" rx="4" fill="${snk.palette[1]}"/>
+            </svg>
+          </div>
+          <div class="sneaker-tag">${snk.tag}</div>
+          <div class="sneaker-name">${snk.name}</div>
+          <div style="font-size: 0.8rem; font-weight: 700; color: #FFB6C1; margin-bottom: 6px;">${snk.colorway}</div>
+          <div class="sneaker-specs">${snk.specs}</div>
+        `;
+        sneakerContainer.appendChild(card);
+      });
+    }
+
+    /* ==========================================================================
+       8. PAGE 4: "CURLY'S EDIT STUDIO" (HTML5 Canvas Engine)
+       ========================================================================== */
+    let studioState = {
+      filter: "none",
+      template: "vogue",
+      stickers: new Set(),
+      zoom: 1.0,
+      panX: 0,
+      panY: 0
+    };
+
+    function initPage4() {
+      // Filter preset listeners
+      document.querySelectorAll('#filter-presets-container .preset-pill').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('#filter-presets-container .preset-pill').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          studioState.filter = btn.getAttribute('data-filter');
+          renderEditStudioCanvas();
+        });
+      });
+
+      // Template selector listeners
+      document.querySelectorAll('#template-selector-container .template-card-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('#template-selector-container .template-card-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          studioState.template = btn.getAttribute('data-template');
+          renderEditStudioCanvas();
+        });
+      });
+
+      // Sticker chips listeners
+      document.querySelectorAll('#stickers-container .sticker-chip').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const st = btn.getAttribute('data-sticker');
+          if (studioState.stickers.has(st)) {
+            studioState.stickers.delete(st);
+            btn.classList.remove('active');
+          } else {
+            studioState.stickers.add(st);
+            btn.classList.add('active');
+          }
+          renderEditStudioCanvas();
+        });
+      });
+
+      // Sliders listeners
+      document.getElementById('zoom-slider').addEventListener('input', (e) => {
+        studioState.zoom = parseFloat(e.target.value);
+        renderEditStudioCanvas();
+      });
+      document.getElementById('pan-x-slider').addEventListener('input', (e) => {
+        studioState.panX = parseFloat(e.target.value);
+        renderEditStudioCanvas();
+      });
+      document.getElementById('pan-y-slider').addEventListener('input', (e) => {
+        studioState.panY = parseFloat(e.target.value);
+        renderEditStudioCanvas();
+      });
+
+      // Export Button
+      document.getElementById('studio-export-btn').addEventListener('click', exportStudioEdit);
+
+      // Render timeline waveform animation loop
+      initWaveformAnimation();
+    }
+
+    function renderEditStudioCanvas() {
+      const canvas = document.getElementById('edit-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const w = canvas.width;
+      const h = canvas.height;
+
+      // Clear Canvas
+      ctx.clearRect(0, 0, w, h);
+
+      // 1. Draw Background
+      ctx.fillStyle = "#12121A";
+      ctx.fillRect(0, 0, w, h);
+
+      // 2. Draw Photo or Cute Curly Avatar
+      if (globalActivePhotoDataUrl) {
+        const img = new Image();
+        img.onload = () => {
+          drawPhotoContent(ctx, img, w, h);
+          drawFiltersAndOverlays(ctx, w, h);
+        };
+        img.src = globalActivePhotoDataUrl;
+      } else {
+        // Draw built-in cute curly avatar on canvas
+        drawDefaultAvatarOnCanvas(ctx, w, h);
+        drawFiltersAndOverlays(ctx, w, h);
+      }
+    }
+
+    function drawPhotoContent(ctx, img, w, h) {
+      ctx.save();
+      // Apply pan & zoom
+      const cx = w / 2 + studioState.panX;
+      const cy = h / 2 + studioState.panY;
+      const scale = studioState.zoom;
+
+      const imgAspect = img.width / img.height;
+      let drawW = w * scale;
+      let drawH = (w / imgAspect) * scale;
+      if (drawH < h * scale) {
+        drawH = h * scale;
+        drawW = (h * imgAspect) * scale;
+      }
+
+      ctx.drawImage(img, cx - drawW / 2, cy - drawH / 2, drawW, drawH);
+      ctx.restore();
+    }
+
+    function drawDefaultAvatarOnCanvas(ctx, w, h) {
+      // Warm backdrop
+      ctx.fillStyle = "#FFE8D6";
+      ctx.fillRect(0, 0, w, h);
+
+      // Curly hair bunches background
+      ctx.fillStyle = "#4A2E18";
+      ctx.beginPath();
+      ctx.arc(w / 2 - 140, h / 2 - 40, 110, 0, Math.PI * 2);
+      ctx.arc(w / 2 + 140, h / 2 - 40, 110, 0, Math.PI * 2);
+      ctx.arc(w / 2, h / 2 - 150, 130, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Face
+      ctx.fillStyle = "#FAD7BD";
+      ctx.beginPath();
+      ctx.ellipse(w / 2, h / 2 + 20, 130, 160, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Cute Smile
+      ctx.strokeStyle = "#C53030";
+      ctx.lineWidth = 10;
+      ctx.lineCap = "round";
+      ctx.beginPath();
+      ctx.arc(w / 2, h / 2 + 70, 45, 0.2, Math.PI - 0.2);
+      ctx.stroke();
+
+      // Cute Eyes
+      ctx.fillStyle = "#2D1810";
+      ctx.beginPath();
+      ctx.arc(w / 2 - 48, h / 2, 16, 0, Math.PI * 2);
+      ctx.arc(w / 2 + 48, h / 2, 16, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Eye highlights
+      ctx.fillStyle = "#FFFFFF";
+      ctx.beginPath();
+      ctx.arc(w / 2 - 44, h / 2 - 4, 6, 0, Math.PI * 2);
+      ctx.arc(w / 2 + 52, h / 2 - 4, 6, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Front curls
+      ctx.fillStyle = "#4A2E18";
+      for (let i = -3; i <= 3; i++) {
+        ctx.beginPath();
+        ctx.arc(w / 2 + i * 40, h / 2 - 110, 40, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    function drawFiltersAndOverlays(ctx, w, h) {
+      // 3. Apply Filters
+      switch (studioState.filter) {
+        case "romcom":
+          // Warm 90s sepia / grain
+          ctx.fillStyle = "rgba(230, 180, 120, 0.25)";
+          ctx.fillRect(0, 0, w, h);
+          ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
+          for (let i = 0; i < 2000; i++) {
+            ctx.fillRect(Math.random() * w, Math.random() * h, 2, 2);
+          }
+          break;
+        case "glow":
+          // Dreamy lip gloss pink bloom
+          ctx.fillStyle = "rgba(255, 105, 180, 0.22)";
+          ctx.fillRect(0, 0, w, h);
+          break;
+        case "golden":
+          // Golden hour radiance
+          const goldGrad = ctx.createLinearGradient(0, 0, w, h);
+          goldGrad.addColorStop(0, "rgba(255, 215, 0, 0.3)");
+          goldGrad.addColorStop(1, "rgba(255, 140, 0, 0.2)");
+          ctx.fillStyle = goldGrad;
+          ctx.fillRect(0, 0, w, h);
+          break;
+        case "cyber":
+          // Y2K Chromatic Cyber duotone
+          ctx.fillStyle = "rgba(6, 182, 212, 0.2)";
+          ctx.fillRect(0, 0, w, h);
+          ctx.fillStyle = "rgba(236, 72, 153, 0.2)";
+          ctx.fillRect(10, 0, w, h);
+          break;
+        case "noir":
+          // Black and white moody chic
+          const imgData = ctx.getImageData(0, 0, w, h);
+          const d = imgData.data;
+          for (let i = 0; i < d.length; i += 4) {
+            const avg = (d[i] * 0.299 + d[i + 1] * 0.587 + d[i + 2] * 0.114);
+            d[i] = avg;
+            d[i + 1] = avg;
+            d[i + 2] = avg;
+          }
+          ctx.putImageData(imgData, 0, 0);
+          break;
+      }
+
+      // 4. Draw Frames & Templates
+      switch (studioState.template) {
+        case "vogue":
+          // Vogue / Elle Fashion Magazine Cover
+          ctx.fillStyle = "rgba(0, 0, 0, 0.35)";
+          ctx.fillRect(0, 0, w, 160);
+          ctx.fillRect(0, h - 180, w, 180);
+
+          ctx.fillStyle = "#FFFFFF";
+          ctx.font = "900 110px 'Playfair Display', serif";
+          ctx.textAlign = "center";
+          ctx.fillText("CURLY", w / 2, 130);
+
+          ctx.font = "700 24px 'Space Grotesk', sans-serif";
+          ctx.letterSpacing = "6px";
+          ctx.fillText("THE BIRTHDAY ISSUE • NOV 2026", w / 2, 175);
+
+          // Callout headlines
+          ctx.textAlign = "left";
+          ctx.font = "800 28px 'Plus Jakarta Sans', sans-serif";
+          ctx.fillStyle = "#FFD700";
+          ctx.fillText("★ ICONIC CURLS SPECIAL", 40, h - 120);
+          ctx.fillStyle = "#FFFFFF";
+          ctx.font = "600 20px 'Plus Jakarta Sans', sans-serif";
+          ctx.fillText("Why Aarvi's Smile is Officially Art", 40, h - 90);
+          ctx.fillText("100% Veg Foodie Confessions & Fresh Kicks", 40, h - 65);
+
+          // Barcode on right
+          ctx.fillStyle = "#FFFFFF";
+          ctx.fillRect(w - 140, h - 110, 100, 50);
+          ctx.fillStyle = "#000000";
+          for (let i = 0; i < 20; i++) {
+            ctx.fillRect(w - 135 + i * 4.5, h - 105, 2, 40);
+          }
+          break;
+
+        case "polaroid":
+          // Vintage Polaroid Strip border
+          ctx.strokeStyle = "#FFFFFF";
+          ctx.lineWidth = 28;
+          ctx.strokeRect(14, 14, w - 28, h - 28);
+          ctx.fillStyle = "#FFFFFF";
+          ctx.fillRect(0, h - 140, w, 140);
+
+          ctx.fillStyle = "#2D1810";
+          ctx.font = "700 46px 'Caveat', cursive";
+          ctx.textAlign = "center";
+          ctx.fillText("Aarvi • Birthday Queen 2026 ✨", w / 2, h - 60);
+          break;
+
+        case "spotify":
+          // Spotify Now-Playing Glass Overlay
+          ctx.fillStyle = "rgba(18, 18, 24, 0.85)";
+          ctx.fillRect(40, h - 200, w - 80, 160);
+          ctx.strokeStyle = "rgba(255, 255, 255, 0.2)";
+          ctx.lineWidth = 2;
+          ctx.strokeRect(40, h - 200, w - 80, 160);
+
+          ctx.fillStyle = "#FFFFFF";
+          ctx.textAlign = "left";
+          ctx.font = "800 32px 'Plus Jakarta Sans', sans-serif";
+          ctx.fillText("Curly's Birthday Anthem", 70, h - 140);
+          ctx.fillStyle = "#A1A1AA";
+          ctx.font = "600 22px 'Plus Jakarta Sans', sans-serif";
+          ctx.fillText("Aarvi • Every Genre FM", 70, h - 105);
+
+          // Play progress bar
+          ctx.fillStyle = "#3F3F46";
+          ctx.fillRect(70, h - 75, w - 140, 8);
+          ctx.fillStyle = "#1DB954"; // Spotify green
+          ctx.fillRect(70, h - 75, (w - 140) * 0.72, 8);
+          break;
+
+        case "timeline":
+          // Video Edit Timeline Overlay
+          ctx.fillStyle = "rgba(10, 10, 15, 0.8)";
+          ctx.fillRect(0, 0, w, 60);
+          ctx.fillStyle = "#06B6D4";
+          ctx.font = "700 24px 'Space Grotesk', monospace";
+          ctx.textAlign = "left";
+          ctx.fillText("REC ● 00:24:11:05 [4K 60FPS]", 30, 40);
+
+          ctx.fillStyle = "rgba(10, 10, 15, 0.8)";
+          ctx.fillRect(0, h - 80, w, 80);
+          ctx.fillStyle = "#E2E8F0";
+          ctx.font = "600 20px 'Space Grotesk', monospace";
+          ctx.fillText("V1: AARVI_MAIN_BROLL.MP4 | A1: EVERY_GENRE_BEAT.WAV", 30, h - 35);
+          break;
+      }
+
+      // 5. Draw Stickers
+      ctx.textAlign = "center";
+      if (studioState.stickers.has("sparkles")) {
+        ctx.font = "55px sans-serif";
+        ctx.fillText("✨", 80, 100);
+        ctx.fillText("✨", w - 80, 180);
+      }
+      if (studioState.stickers.has("tiara")) {
+        ctx.font = "75px sans-serif";
+        ctx.fillText("👑", w / 2, 220);
+      }
+      if (studioState.stickers.has("sunglasses")) {
+        ctx.font = "65px sans-serif";
+        ctx.fillText("🕶️", w / 2, h / 2 - 20);
+      }
+      if (studioState.stickers.has("lipgloss")) {
+        ctx.font = "60px sans-serif";
+        ctx.fillText("💄", w - 90, h - 220);
+      }
+      if (studioState.stickers.has("vanilla")) {
+        ctx.font = "60px sans-serif";
+        ctx.fillText("🍦", 90, h - 220);
+      }
+      if (studioState.stickers.has("earring")) {
+        ctx.font = "55px sans-serif";
+        ctx.fillText("💎", 110, h / 2);
+        ctx.fillText("💎", w - 110, h / 2);
+      }
+      if (studioState.stickers.has("bow")) {
+        ctx.font = "60px sans-serif";
+        ctx.fillText("🎀", w / 2, 80);
+      }
+      if (studioState.stickers.has("baddie")) {
+        ctx.save();
+        ctx.translate(w - 150, 90);
+        ctx.rotate(0.15);
+        ctx.fillStyle = "#EC4899";
+        ctx.fillRect(-110, -25, 220, 50);
+        ctx.fillStyle = "#FFFFFF";
+        ctx.font = "800 20px 'Space Grotesk', sans-serif";
+        ctx.fillText("MAIN CHARACTER", 0, 8);
+        ctx.restore();
+      }
+    }
+
+    function exportStudioEdit() {
+      const canvas = document.getElementById('edit-canvas');
+      const dataUrl = canvas.toDataURL('image/png');
+      const link = document.createElement('a');
+      link.download = `curly-birthday-aesthetic-edit-${Date.now()}.png`;
+      link.href = dataUrl;
+      link.click();
+
+      triggerConfetti(80);
+      alert("✨ Aesthetic Edit Exported! Saved to your downloads!");
+    }
+
+    function initWaveformAnimation() {
+      const waveCanvas = document.getElementById('timeline-waveform-canvas');
+      if (!waveCanvas) return;
+      const ctx = waveCanvas.getContext('2d');
+
+      function drawWave() {
+        const w = waveCanvas.width = waveCanvas.offsetWidth;
+        const h = waveCanvas.height = waveCanvas.offsetHeight;
+        ctx.clearRect(0, 0, w, h);
+
+        ctx.fillStyle = "#8B5CF6";
+        const barsCount = Math.floor(w / 6);
+        for (let i = 0; i < barsCount; i++) {
+          let barHeight = 4;
+          if (synthEngine.isPlaying) {
+            barHeight = 4 + Math.sin(Date.now() * 0.008 + i * 0.4) * (h / 2.5) + (h / 3);
+          }
+          ctx.fillRect(i * 6, (h - barHeight) / 2, 3, barHeight);
+        }
+        requestAnimationFrame(drawWave);
+      }
+      requestAnimationFrame(drawWave);
+    }
+
+    /* ==========================================================================
+       9. PAGE 5: CURLYFLIX ROM-COM CINEMA LOGIC
+       ========================================================================== */
+    function initPage5() {
+      const container = document.getElementById('cinema-posters-container');
+      container.innerHTML = '';
+
+      CONFIG.movies.forEach((movie, idx) => {
+        const wrap = document.createElement('div');
+        wrap.className = 'poster-3d-wrap';
+        wrap.innerHTML = `
+          <div class="poster-inner">
+            <!-- Front of Poster -->
+            <div class="poster-front">
+              <div class="poster-img-area">
+                <div class="poster-photo-slot" style="width: 100%; height: 100%;">
+                  ${globalActivePhotoDataUrl 
+                    ? `<img src="${globalActivePhotoDataUrl}" alt="Aarvi">` 
+                    : `<div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:4.5rem;background:#241230;">🎬</div>`}
+                </div>
+                <div class="poster-gradient"></div>
+              </div>
+              <div class="poster-meta">
+                <div class="poster-tagline">${movie.tagline}</div>
+                <div class="poster-movie-title">${movie.title}</div>
+                <div class="poster-billing">Starring Aarvi "Curly" • ${movie.duration}</div>
+              </div>
+            </div>
+
+            <!-- Back of Poster (Flipped) -->
+            <div class="poster-back">
+              <div>
+                <div class="rotten-badge">🍅 ${movie.rating} Certified Fresh</div>
+                <div style="font-family: var(--font-serif); font-size: 1.3rem; margin: 10px 0 4px; font-weight: 700;">
+                  ${movie.title}
+                </div>
+                <p class="synopsis-text">${movie.synopsis}</p>
+                <div class="starring-quote">${movie.quote}</div>
+              </div>
+              <div>
+                <button class="btn btn-primary" style="width: 100%; font-size: 0.85rem; padding: 10px; background: #E11D48;" onclick="event.stopPropagation(); showMovieTrailerModal('${movie.title.replace(/'/g, "\\'")}', '${movie.quote.replace(/'/g, "\\'")}')">
+                  ▶ Watch Trailer
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+
+        wrap.addEventListener('click', () => {
+          wrap.classList.toggle('flipped');
+          if (synthEngine.ctx) {
+            synthEngine.playPluckNote(520, synthEngine.ctx.currentTime, 0.2, 'sine');
+          }
+        });
+
+        container.appendChild(wrap);
+      });
+    }
+
+    function showMovieTrailerModal(title, quote) {
+      const modal = document.getElementById('app-modal');
+      const body = document.getElementById('modal-body');
+
+      body.innerHTML = `
+        <div style="text-align: center;">
+          <div style="font-size: 3rem; margin-bottom: 8px;">🍿🎬</div>
+          <div style="font-family: var(--font-serif); font-size: 1.6rem; font-weight: 800; color: #111827; margin-bottom: 8px;">
+            ${title}
+          </div>
+          <p style="font-size: 0.95rem; color: #4B5563; line-height: 1.6; margin-bottom: 16px;">
+            The crowd is cheering, the marquee lights are sparkling, and Aarvi steals the spotlight once again!
+          </p>
+          <div style="background: #FDF2F8; border: 1px dashed #F472B6; padding: 16px; border-radius: 12px; margin-bottom: 20px;">
+            <span style="font-family: var(--font-hand); font-size: 1.5rem; color: #BE185D;">
+              ${quote}
+            </span>
+          </div>
+          <button class="btn btn-primary" onclick="closeModal()" style="background: #E11D48; color: #FFF; width: 100%;">
+            Encore! Close Trailer
+          </button>
+        </div>
+      `;
+
+      modal.classList.add('active');
+      triggerConfetti(40);
+    }
+
+    function closeModal() {
+      document.getElementById('app-modal').classList.remove('active');
+    }
+
+    document.getElementById('modal-close-btn').addEventListener('click', closeModal);
+    document.getElementById('app-modal').addEventListener('click', (e) => {
+      if (e.target.id === 'app-modal') closeModal();
+    });
+
+    /* ==========================================================================
+       10. PAGE 6: THE VANILLA CANDLELIGHT FINALE LOGIC
+       ========================================================================== */
+    let candlesBlownOut = false;
+    let blownFlamesCount = 0;
+
+    function initPage6() {
+      // Set letter contents from CONFIG
+      document.getElementById('letter-salutation-text').innerText = CONFIG.recipient.salutation;
+      document.getElementById('letter-body-text').innerText = CONFIG.letter.body;
+
+      document.getElementById('blow-candles-btn').addEventListener('click', blowOutAllCandles);
+      document.getElementById('cake-svg-btn').addEventListener('click', blowOutAllCandles);
+
+      // Individual candle flame clicks
+      ['flame-1', 'flame-2', 'flame-3'].forEach((id, idx) => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.addEventListener('click', (e) => {
+            e.stopPropagation();
+            extinguishSingleFlame(idx + 1);
+          });
+        }
+      });
+
+      document.getElementById('relight-candles-btn').addEventListener('click', relightCandles);
+      document.getElementById('hug-btn').addEventListener('click', () => {
+        triggerConfetti(100);
+        alert("💖 Massive warm birthday hug sent to Aarvi (Curly)! Have the best birthday ever!");
+      });
+    }
+
+    function extinguishSingleFlame(num) {
+      const flames = document.querySelectorAll(`.flame-${num}`);
+      const smoke = document.getElementById(`smoke-${num}`);
+      
+      let alreadyBlown = false;
+      flames.forEach(f => {
+        if (f.classList.contains('blown-out')) alreadyBlown = true;
+        f.classList.add('blown-out');
+      });
+
+      if (!alreadyBlown) {
+        if (smoke) smoke.classList.add('active');
+        blownFlamesCount++;
+        triggerConfetti(25);
+        if (synthEngine.ctx) {
+          synthEngine.playPluckNote(650, synthEngine.ctx.currentTime, 0.3, 'sine');
+        }
+        if (blownFlamesCount >= 3) {
+          triggerCelebrationFinale();
+        }
+      }
+    }
+
+    function blowOutAllCandles() {
+      if (candlesBlownOut) return;
+      candlesBlownOut = true;
+      blownFlamesCount = 3;
+
+      // Extinguish all flames
+      document.querySelectorAll('.candle-flame').forEach(f => f.classList.add('blown-out'));
+
+      // Smoke puffs
+      document.getElementById('smoke-1').classList.add('active');
+      document.getElementById('smoke-2').classList.add('active');
+      document.getElementById('smoke-3').classList.add('active');
+
+      triggerCelebrationFinale();
+    }
+
+    function triggerCelebrationFinale() {
+      candlesBlownOut = true;
+
+      // Change button text
+      const btn = document.getElementById('blow-candles-btn');
+      btn.innerText = "✨ Wish Made! (Candles Blown Out)";
+      btn.style.background = "#059669";
+      btn.style.color = "#FFF";
+
+      // Transition background to warm golden glow
+      document.body.style.background = "radial-gradient(circle at 50% 60%, #2D1808 0%, #120A04 70%, #080402 100%)";
+
+      // Switch music to Birthday Waltz / Music Box
+      synthEngine.switchStation(4);
+      synthEngine.start();
+
+      // Confetti burst
+      triggerConfetti(120);
+
+      // Slide up the wax-sealed birthday letter
+      setTimeout(() => {
+        const letterWrap = document.getElementById('finale-letter-wrap');
+        letterWrap.classList.add('revealed');
+        letterWrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 800);
+    }
+
+    function relightCandles() {
+      candlesBlownOut = false;
+      blownFlamesCount = 0;
+      document.querySelectorAll('.candle-flame').forEach(f => f.classList.remove('blown-out'));
+      document.querySelectorAll('.smoke-puff').forEach(s => s.classList.remove('active'));
+
+      const btn = document.getElementById('blow-candles-btn');
+      btn.innerText = "🎂 Make a Wish & Blow Out Candles!";
+      btn.style.background = "#F59E0B";
+      btn.style.color = "#180D00";
+
+      document.body.style.background = ""; // reverts to CSS data-page
+      document.getElementById('finale-letter-wrap').classList.remove('revealed');
+    }
+
+    /* ==========================================================================
+       11. GLOBAL MUSIC PLAYER CONTROLS & EVENT BINDINGS
+       ========================================================================== */
+    function initMusicPlayer() {
+      document.getElementById('dock-play-pause-btn').addEventListener('click', () => {
+        synthEngine.togglePlay();
+      });
+
+      document.getElementById('dock-vinyl-btn').addEventListener('click', () => {
+        synthEngine.togglePlay();
+      });
+
+      document.getElementById('dock-next-track-btn').addEventListener('click', () => {
+        synthEngine.nextStation();
+      });
+
+      document.getElementById('station-selector-dropdown').addEventListener('change', (e) => {
+        synthEngine.switchStation(parseInt(e.target.value, 10));
+      });
+
+      document.getElementById('dock-volume-slider').addEventListener('input', (e) => {
+        synthEngine.setVolume(parseFloat(e.target.value));
+      });
+
+      document.getElementById('custom-mp3-upload').addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+          synthEngine.loadCustomAudio(file);
+        }
+      });
+    }
+
+    /* ==========================================================================
+       12. CONFETTI HELPER (With built-in canvas fallback)
+       ========================================================================== */
+    function triggerConfetti(count = 50) {
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: count,
+          spread: 70,
+          origin: { y: 0.7 }
+        });
+      } else {
+        // Built-in simple particle fallback
+        const canvas = document.createElement('canvas');
+        canvas.style.position = 'fixed';
+        canvas.style.inset = '0';
+        canvas.style.pointerEvents = 'none';
+        canvas.style.zIndex = '9999';
+        document.body.appendChild(canvas);
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const particles = [];
+        const colors = ['#FF69B4', '#D4AF37', '#00E5FF', '#FF5722', '#76FF03', '#FFF'];
+        for (let i = 0; i < count; i++) {
+          particles.push({
+            x: canvas.width / 2,
+            y: canvas.height * 0.7,
+            vx: (Math.random() - 0.5) * 12,
+            vy: -Math.random() * 14 - 4,
+            size: Math.random() * 8 + 4,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            alpha: 1
+          });
+        }
+
+        function step() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          let alive = false;
+          particles.forEach(p => {
+            p.x += p.vx;
+            p.y += p.vy;
+            p.vy += 0.4;
+            p.alpha -= 0.015;
+            if (p.alpha > 0) {
+              alive = true;
+              ctx.globalAlpha = p.alpha;
+              ctx.fillStyle = p.color;
+              ctx.fillRect(p.x, p.y, p.size, p.size);
+            }
+          });
+          if (alive) {
+            requestAnimationFrame(step);
+          } else {
+            canvas.remove();
+          }
+        }
+        requestAnimationFrame(step);
+      }
+    }
+
+    /* ==========================================================================
+       13. APP INITIALIZATION
+       ========================================================================== */
+    window.addEventListener('DOMContentLoaded', () => {
+      initNavigation();
+      initPhotoSystem();
+      initMusicPlayer();
+      initPage1();
+      initPage2();
+      initPage3();
+      initPage4();
+      initPage5();
+      initPage6();
+
+      // Start on Page 1
+      switchPage(1);
+
+      // Auto unlock AudioContext on first user click anywhere
+      document.addEventListener('click', () => {
+        synthEngine.initContext();
+      }, { once: true });
+    });
+  </script>
+</body>
+</html>
